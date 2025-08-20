@@ -4,24 +4,80 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
+  transition: background 0.3s, color 0.3s;
 }
+
 header {
   background: #008000;
   color: white;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .container {
-  margin: 50px auto;
+  margin: 30px auto;
   max-width: 500px;
 }
-select, audio {
+
+input, select, audio, button {
   width: 100%;
   margin-top: 15px;
   padding: 10px;
-  font-size: 18px;
+  font-size: 16px;
 }
+
+button {
+  background: #008000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #006400;
+}
+
 footer {
-  margin-top: 50px;
+  margin-top: 40px;
   background: #eee;
   padding: 15px;
+}
+
+#quran-text {
+  margin: 30px auto;
+  max-width: 700px;
+  text-align: justify;
+  line-height: 2;
+  padding: 20px;
+}
+
+.text-box {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* الوضع الليلي */
+.dark {
+  background: #222;
+  color: #ddd;
+}
+
+.dark header {
+  background: #444;
+}
+
+.dark footer {
+  background: #333;
+}
+
+.dark .text-box {
+  background: #333;
+  border-color: #555;
 }
