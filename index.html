@@ -22,15 +22,21 @@
       .container {
         max-width: 500px;
         margin: auto;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0,0,0,0.7);
         padding: 20px;
         border-radius: 12px;
       }
+      label {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
       select, audio {
         width: 100%;
-        margin: 10px 0;
+        margin-bottom: 15px;
         padding: 8px;
         border-radius: 6px;
+        border: none;
       }
     </style>
   </head>
@@ -40,9 +46,9 @@
       <label>اختر القارئ:</label>
       <select id="reciter" onchange="loadSurahs()">
         <option value="">-- اختر قارئ --</option>
-        <option value="https://server8.mp3quran.net/afs/">القارئ: عبدالرحمن السديس</option>
-        <option value="https://server12.mp3quran.net/maher/">القارئ: ماهر المعيقلي</option>
-        <option value="https://server6.mp3quran.net/qtm/">القارئ: مشاري العفاسي</option>
+        <option value="https://server8.mp3quran.net/afs/">عبدالرحمن السديس</option>
+        <option value="https://server12.mp3quran.net/maher/">ماهر المعيقلي</option>
+        <option value="https://server6.mp3quran.net/qtm/">مشاري العفاسي</option>
       </select>
 
       <label>اختر السورة:</label>
