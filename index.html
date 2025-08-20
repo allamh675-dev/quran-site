@@ -1,44 +1,98 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>القرآن الكريم</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📖 القرآن الكريم</title>
+    <style>
+      body {
+        font-family: Tahoma, sans-serif;
+        background: url("https://i.ibb.co/dt1Qx5L/quran-bg.jpg") no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 20px;
+        color: #fff;
+      }
+      h1 {
+        text-align: center;
+        background: #065f46;
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .container {
+        max-width: 500px;
+        margin: auto;
+        background: rgba(0,0,0,0.6);
+        padding: 20px;
+        border-radius: 12px;
+      }
+      select, audio {
+        width: 100%;
+        margin: 10px 0;
+        padding: 8px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
     <h1>📖 القرآن الكريم</h1>
-    <button id="toggleTheme">🌙 وضع ليلي</button>
-  </header>
-
-  <main>
     <div class="container">
-      <input type="text" id="search" placeholder="ابحث عن سورة...">
-
-      <label for="reciter">اختر القارئ:</label>
-      <select id="reciter">
-        <option value="afs">مشاري العفاسي</option>
-        <option value="basit">عبدالباسط عبدالصمد</option>
-        <option value="husary">محمود الحصري</option>
+      <label>اختر القارئ:</label>
+      <select id="reciter" onchange="loadSurahs()">
+        <option value="">-- اختر قارئ --</option>
+        <option value="https://server8.mp3quran.net/afs/">القارئ: عبدالرحمن السديس</option>
+        <option value="https://server12.mp3quran.net/maher/">القارئ: ماهر المعيقلي</option>
+        <option value="https://server6.mp3quran.net/qtm/">القارئ: مشاري العفاسي</option>
       </select>
 
-      <label for="surah">اختر السورة:</label>
-      <select id="surah"></select>
+      <label>اختر السورة:</label>
+      <select id="surah" onchange="playAudio()">
+        <option value="">-- اختر السورة --</option>
+      </select>
 
       <audio id="player" controls></audio>
-      <button id="downloadBtn">⬇️ تحميل التلاوة</button>
     </div>
 
-    <section id="quran-text">
-      <h2>📖 نص السورة</h2>
-      <div id="surahText" class="text-box">اختر سورة لعرض النص</div>
-    </section>
-  </main>
+    <script>
+      const surahSelect = document.getElementById("surah");
+      const reciterSelect = document.getElementById("reciter");
+      const player = document.getElementById("player");
 
-  <footer>
-    <p>© موقع القرآن الكريم - تجريبي</p>
-  </footer>
+      // أسماء السور (1-114)
+      const surahs = [
+        "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
+        "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
+        "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت",
+        "الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر",
+        "غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات",
+        "ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر",
+        "الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة",
+        "المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات",
+        "عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر",
+        "البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة",
+        "العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون",
+        "النصر","المسد","الإخلاص","الفلق","الناس"
+      ];
 
-  <script src="script.js"></script>
-</body>
+      // تحميل قائمة السور
+      function loadSurahs() {
+        surahSelect.innerHTML = "<option value=''>-- اختر السورة --</option>";
+        surahs.forEach((name, i) => {
+          const num = (i+1).toString().padStart(3,'0');
+          const opt = document.createElement("option");
+          opt.value = num + ".mp3";
+          opt.textContent = name;
+          surahSelect.appendChild(opt);
+        });
+      }
+
+      // تشغيل الصوت
+      function playAudio() {
+        if(reciterSelect.value && surahSelect.value) {
+          player.src = reciterSelect.value + surahSelect.value;
+          player.play();
+        }
+      }
+    </script>
+  </body>
 </html>
