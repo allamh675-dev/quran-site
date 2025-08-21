@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
+# منع الزحف على ملفات غير ضرورية
+Disallow: /*.zip$
+Disallow: /*.css$
+Disallow: /*.js$
+
+# السماح بالصور
+Allow: /images/
+
+# رابط خريطة الموقع
 Sitemap: https://noorquranonline.com/sitemap.xml
