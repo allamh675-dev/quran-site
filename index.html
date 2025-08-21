@@ -11,13 +11,6 @@
   <meta name="author" content="NoorQuranOnline">
   <meta name="language" content="ar">
 
-  <!-- OG -->
-  <meta property="og:title" content="NoorQuranOnline | القرآن الكريم كامل">
-  <meta property="og:description" content="تلاوات بصوت كبار القراء + مصحف مكتوب + أحاديث + أدعية">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://noorquranonline.com/">
-  <meta property="og:image" content="https://iili.io/K91WZj1.jpg">
-
   <style>
     body {
       font-family: Tahoma, sans-serif;
@@ -33,14 +26,13 @@
     h2 {text-align:center;}
     footer {background:rgba(0,0,0,0.8); padding:15px; text-align:center; margin-top:20px;}
 
-    select, button {
-      padding: 8px; margin: 5px; border-radius: 6px; border:none;
+    /* مشغل APL */
+    #surahGrid {display:grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap:8px;}
+    #surahGrid button {
+      padding:8px; border:none; border-radius:6px; cursor:pointer;
+      background:rgba(0,0,0,0.7); color:#fff; transition:0.3s;
     }
-    button {cursor:pointer; background:#007bff; color:#fff;}
-    button:hover {background:#0056b3;}
-    ul {list-style:none; padding:0;}
-    ul li {margin:5px 0;}
-    ul li button {width:100%; text-align:right;}
+    #surahGrid button:hover {background:rgba(0,123,255,0.8);}
   </style>
 </head>
 <body>
@@ -68,21 +60,32 @@
 
 <!-- مشغل التلاوات APL -->
 <section id="apl">
-  <h2>🎧 استمع للقرآن الكريم (كامل)</h2>
+  <h2>🎧 استمع للقرآن الكريم</h2>
 
-  <label>اختر الشيخ:</label>
-  <select id="reciter">
-    <option value="basit">عبد الباسط</option>
-    <option value="husr">الحصري</option>
-    <option value="afs">العفاسي</option>
-    <option value="maher">ماهر المعيقلي</option>
-    <option value="s_gmd">سعد الغامدي</option>
-  </select>
+  <div style="text-align:center; margin-bottom:15px;">
+    <label>اختر الشيخ:</label>
+    <select id="reciter">
+      <option value="basit">عبد الباسط</option>
+      <option value="husr">الحصري</option>
+      <option value="afs">العفاسي</option>
+      <option value="maher">ماهر المعيقلي</option>
+      <option value="s_gmd">سعد الغامدي</option>
+      <option value="minsh">محمد صديق المنشاوي</option>
+      <option value="shatri">أبو بكر الشاطري</option>
+      <option value="hud">علي الحذيفي</option>
+      <option value="ajm">أحمد العجمي</option>
+      <option value="idris">إدريس أبكر</option>
+      <option value="shur">سعود الشريم</option>
+      <option value="tab">عبد الرحمن السديس</option>
+    </select>
+  </div>
 
-  <h3>قائمة السور:</h3>
-  <ul id="surahList"></ul>
+  <h3 style="text-align:center;">قائمة السور:</h3>
+  <div id="surahGrid"></div>
 
-  <audio id="player" controls style="width:100%; margin-top:10px;"></audio>
+  <div style="margin-top:15px; text-align:center;">
+    <audio id="player" controls style="width:100%; border-radius:8px;"></audio>
+  </div>
 </section>
 
 <!-- المصحف -->
@@ -132,7 +135,14 @@
     husr: "https://server12.mp3quran.net/husr/",
     afs: "https://server6.mp3quran.net/afs/",
     maher: "https://server11.mp3quran.net/maher/",
-    s_gmd: "https://server7.mp3quran.net/s_gmd/"
+    s_gmd: "https://server7.mp3quran.net/s_gmd/",
+    minsh: "https://server10.mp3quran.net/minsh/",
+    shatri: "https://server11.mp3quran.net/shatri/",
+    hud: "https://server13.mp3quran.net/hudhaifi/",
+    ajm: "https://server7.mp3quran.net/ajm/",
+    idris: "https://server10.mp3quran.net/idrees/",
+    shur: "https://server11.mp3quran.net/shur/",
+    tab: "https://server11.mp3quran.net/sds/"
   };
 
   // أسماء السور
@@ -151,18 +161,19 @@
     "المسد","الإخلاص","الفلق","الناس"
   ];
 
-  const surahList = document.getElementById("surahList");
+  const surahGrid = document.getElementById("surahGrid");
   const mushafList = document.getElementById("mushafList");
   const player = document.getElementById("player");
   const reciterSelect = document.getElementById("reciter");
 
   // بناء قائمة السور
   function buildSurahList(){
-    surahList.innerHTML = "";
+    surahGrid.innerHTML = "";
     surahs.forEach((name,i)=>{
-      let li = document.createElement("li");
-      li.innerHTML = `<button onclick="playSurah(${i+1})">${name}</button>`;
-      surahList.appendChild(li);
+      let btn = document.createElement("button");
+      btn.textContent = name;
+      btn.onclick = ()=> playSurah(i+1);
+      surahGrid.appendChild(btn);
     });
   }
 
