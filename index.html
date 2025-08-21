@@ -2,16 +2,140 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>اختبار الصوت</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 المكتبة الإسلامية</title>
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://i.ibb.co/VNvL5MS/islamic-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    header { background: rgba(0, 70, 0, 0.9); padding: 15px; text-align: center; font-size: 24px; font-weight: bold; }
+    nav { display: flex; justify-content: center; background: #024; flex-wrap: wrap; }
+    nav a { color: #fff; padding: 12px 20px; text-decoration: none; font-size: 16px; }
+    nav a:hover { background: #046; }
+    section { padding: 20px; margin: 20px; border-radius: 10px; background: rgba(0, 0, 0, 0.6); }
+    h2 { text-align: center; margin-bottom: 15px; }
+    .quran-controls, .library, .dua-list { text-align: center; margin-top: 15px; }
+    select, input { padding: 8px; margin: 5px; border-radius: 5px; border: none; }
+    button { padding: 10px 20px; border: none; border-radius: 5px; margin-top: 10px; background: green; color: #fff; cursor: pointer; }
+    button:hover { background: darkgreen; }
+    audio { margin-top: 15px; width: 100%; }
+    .dua-list p, .hadith-box { background: rgba(255,255,255,0.1); padding: 10px; margin: 10px 0; border-radius: 5px; }
+    .library a { display: block; margin: 8px 0; color: #ff0; text-decoration: none; }
+    .library a:hover { text-decoration: underline; }
+    footer { text-align: center; background: #024; padding: 15px; margin-top: 20px; }
+  </style>
 </head>
-<body style="text-align:center; font-family:Tahoma;">
+<body>
 
-  <h2>🎧 تشغيل سورة تجريبية</h2>
+<header>📚 المكتبة الإسلامية</header>
 
-  <audio controls style="width:80%">
-    <source src="https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/002.mp3" type="audio/mpeg">
-    المتصفح لا يدعم تشغيل الصوت.
-  </audio>
+<nav>
+  <a href="#quran">القرآن الكريم</a>
+  <a href="#hadith">الأحاديث</a>
+  <a href="#dua">الأدعية</a>
+  <a href="#library">المكتبة</a>
+  <a href="#contact">تواصل</a>
+</nav>
+
+<!-- قسم القرآن الكريم -->
+<section id="quran">
+  <h2>📖 القرآن الكريم</h2>
+  <div class="quran-controls">
+    <label>اختر القارئ: </label>
+    <select id="reciter">
+      <option value="https://download.quranicaudio.com/quran/abdul_baset/mujawwad/">عبد الباسط</option>
+      <option value="https://download.quranicaudio.com/quran/mahmood_khaleel_al-husary/">الحصري</option>
+      <option value="https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/">مشاري راشد</option>
+    </select>
+    <br>
+    <label>اختر السورة: </label>
+    <select id="surah">
+      <option value="001.mp3">الفاتحة</option>
+      <option value="002.mp3">البقرة</option>
+      <option value="003.mp3">آل عمران</option>
+      <option value="004.mp3">النساء</option>
+      <option value="005.mp3">المائدة</option>
+      <option value="114.mp3">الناس</option>
+    </select>
+    <br>
+    <button onclick="playSurah()">▶️ استماع</button>
+    <button onclick="downloadSurah()">⬇️ تحميل</button>
+    <audio id="player" controls></audio>
+  </div>
+</section>
+
+<!-- قسم الأحاديث -->
+<section id="hadith">
+  <h2>📜 حديث اليوم</h2>
+  <div class="hadith-box" id="hadithBox"></div>
+</section>
+
+<!-- قسم الأدعية -->
+<section id="dua">
+  <h2>🤲 الأدعية</h2>
+  <div class="dua-list">
+    <p>🌙 اللهم بلغنا رمضان وأعنا على صيامه وقيامه.</p>
+    <p>🌙 اللهم اغفر لنا ولوالدينا وللمسلمين أجمعين.</p>
+    <p>🌙 اللهم اجعل القرآن ربيع قلوبنا ونور صدورنا.</p>
+  </div>
+</section>
+
+<!-- قسم المكتبة -->
+<section id="library">
+  <h2>📚 المكتبة الإسلامية</h2>
+  <div class="library">
+    <a href="https://waqfeya.net/" target="_blank">📖 مكتبة الوقف الإسلامية</a>
+    <a href="https://ia800905.us.archive.org/27/items/WAQ67676/01.pdf" target="_blank">📘 صحيح البخاري (PDF)</a>
+    <a href="https://ia800905.us.archive.org/27/items/WAQ67676/02.pdf" target="_blank">📘 صحيح مسلم (PDF)</a>
+  </div>
+</section>
+
+<!-- قسم التواصل -->
+<section id="contact">
+  <h2>📩 تواصل معنا</h2>
+  <p style="text-align:center">📧 البريد: islamic.library@example.com</p>
+</section>
+
+<footer>جميع الحقوق محفوظة © المكتبة الإسلامية</footer>
+
+<script>
+  function playSurah() {
+    const reciter = document.getElementById("reciter").value; 
+    const surah   = document.getElementById("surah").value;   
+    const audio   = document.getElementById("player");
+
+    const url = reciter + surah;
+
+    audio.src = url;
+    audio.load();
+    audio.play().catch(err => {
+      console.log("منع التشغيل:", err);
+      alert("اضغط زر التشغيل في المشغل لبدء الصوت 🎵");
+    });
+  }
+
+  function downloadSurah() {
+    const reciter = document.getElementById("reciter").value;
+    const surah   = document.getElementById("surah").value;
+    const link    = document.createElement("a");
+    link.href     = reciter + surah;
+    link.download = surah;
+    link.click();
+  }
+
+  // حديث عشوائي
+  const ahadith = [
+    "قال رسول الله ﷺ: من سلك طريقاً يلتمس فيه علماً سهّل الله له به طريقاً إلى الجنة.",
+    "قال رسول الله ﷺ: لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه.",
+    "قال رسول الله ﷺ: تبسمك في وجه أخيك صدقة."
+  ];
+  document.getElementById("hadithBox").innerText = ahadith[Math.floor(Math.random()*ahadith.length)];
+</script>
 
 </body>
 </html>
