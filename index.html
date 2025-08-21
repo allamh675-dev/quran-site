@@ -9,14 +9,6 @@
   <meta name="description" content="القرآن الكريم كامل بصوت كبار القراء + مصحف مكتوب + أحاديث نبوية + أدعية">
   <meta name="keywords" content="القرآن الكريم, تلاوة, مصحف, عبد الباسط, الحصري, العفاسي, المعيقلي, الغامدي, أدعية, أحاديث">
   <meta name="author" content="NoorQuranOnline">
-  <meta name="language" content="ar">
-
-  <!-- OG -->
-  <meta property="og:title" content="NoorQuranOnline | القرآن الكريم كامل">
-  <meta property="og:description" content="تلاوات بصوت كبار القراء + مصحف مكتوب + أحاديث + أدعية">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://noorquranonline.com/">
-  <meta property="og:image" content="https://iili.io/K91WZj1.jpg">
 
   <style>
     body {
@@ -39,9 +31,9 @@
     button {cursor:pointer; background:#007bff; color:#fff;}
     button:hover {background:#0056b3;}
     ul {list-style:none; padding:0;}
-    li {margin:5px 0;}
-    li a {color:#fff; text-decoration:none;}
-    li a:hover {text-decoration:underline;}
+    ul li {margin:5px 0;}
+    ul li a {color:#ff0; text-decoration:none;}
+    ul li a:hover {text-decoration:underline;}
   </style>
 </head>
 <body>
@@ -67,22 +59,24 @@
   <p>القرآن الكريم كاملاً مع التلاوات والمصحف المكتوب.</p>
 </section>
 
-<!-- مشغل التلاوات APL -->
+<!-- مشغل التلاوات -->
 <section id="apl">
-  <h2>🎧 استمع للقرآن (قائمة تشغيل كاملة)</h2>
+  <h2>🎧 استمع للقرآن الكريم</h2>
   <label>اختر الشيخ:</label>
   <select id="reciter">
-    <option value="https://download.quranicaudio.com/qdc/abdul_basit/mujawwad/">عبد الباسط</option>
-    <option value="https://download.quranicaudio.com/qdc/husary/mujawwad/">الحصري</option>
-    <option value="https://download.quranicaudio.com/qdc/mishary_rashid_alafasy/murattal/">العفاسي</option>
-    <option value="https://download.quranicaudio.com/qdc/maher_al_muaiqly/murattal/">ماهر المعيقلي</option>
-    <option value="https://download.quranicaudio.com/qdc/saad_al_ghamdi/murattal/">سعد الغامدي</option>
+    <option value="https://server8.mp3quran.net/basit/">عبد الباسط</option>
+    <option value="https://server12.mp3quran.net/husr/">الحصري</option>
+    <option value="https://server6.mp3quran.net/afs/">العفاسي</option>
+    <option value="https://server11.mp3quran.net/maher/">ماهر المعيقلي</option>
+    <option value="https://server7.mp3quran.net/s_gmd/">سعد الغامدي</option>
   </select>
 
-  <h3>قائمة السور:</h3>
-  <ul id="playlist"></ul>
+  <label>اختر السورة:</label>
+  <select id="surah"></select>
 
-  <audio id="player" controls style="width:100%; margin-top:15px;"></audio>
+  <button onclick="playSurah()">▶️ استماع</button>
+  <br>
+  <audio id="player" controls style="width:100%; margin-top:10px;"></audio>
 </section>
 
 <!-- المصحف -->
@@ -126,7 +120,7 @@
 </footer>
 
 <script>
-  // أسماء السور
+  // قائمة السور 114
   const surahs = [
     "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
     "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
@@ -142,37 +136,17 @@
     "المسد","الإخلاص","الفلق","الناس"
   ];
 
-  const playlist = document.getElementById("playlist");
-  const player = document.getElementById("player");
-  const reciterSelect = document.getElementById("reciter");
+  // ملء قائمة السور
+  const surahSelect = document.getElementById("surah");
+  surahs.forEach((name,i)=>{
+    let opt = document.createElement("option");
+    opt.value = String(i+1).padStart(3,"0")+".mp3";
+    opt.textContent = name;
+    surahSelect.appendChild(opt);
+  });
 
-  function loadPlaylist() {
-    playlist.innerHTML = "";
-    const base = reciterSelect.value;
-    surahs.forEach((name, i) => {
-      const surahNum = String(i+1).padStart(3, "0") + ".mp3";
-      let li = document.createElement("li");
-      li.innerHTML = `<button onclick="play('${base}${surahNum}')">${name}</button>`;
-      playlist.appendChild(li);
-    });
-  }
-
-  function play(url){
-    player.src = url;
-    player.play();
-  }
-
-  reciterSelect.addEventListener("change", loadPlaylist);
-  loadPlaylist();
-
-  // المصحف المكتوب
+  // ملء المصحف المكتوب
   const mushafList = document.getElementById("mushafList");
   surahs.forEach((name,i)=>{
     let li = document.createElement("li");
-    li.innerHTML = `<a href="https://surahquran.com/quran-html/${i+1}.html" target="_blank">${name}</a>`;
-    mushafList.appendChild(li);
-  });
-</script>
-
-</body>
-</html>
+    li.innerHTML = `<a href="https://surahquran.com/quran-html/${i+1}.html
