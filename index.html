@@ -2,70 +2,16 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>📖 القرآن الكريم</title>
+  <title>اختبار الصوت</title>
 </head>
-<body style="text-align:center; font-family:Tahoma; background:#eef;">
+<body style="text-align:center; font-family:Tahoma;">
 
-  <h2>📖 القرآن الكريم</h2>
+  <h2>🎧 تشغيل سورة تجريبية</h2>
 
-  <!-- اختيار القارئ -->
-  <label>اختر القارئ:</label>
-  <select id="reciter">
-    <option value="https://download.quranicaudio.com/quran/abdul_baset/mujawwad/">عبد الباسط</option>
-    <option value="https://download.quranicaudio.com/quran/mahmood_khaleel_al-husary/">الحصري</option>
-    <option value="https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/">مشاري العفاسي</option>
-  </select>
-
-  <br><br>
-
-  <!-- اختيار السورة -->
-  <label>اختر السورة:</label>
-  <select id="surah">
-    <option value="001.mp3">الفاتحة</option>
-    <option value="002.mp3">البقرة</option>
-    <option value="003.mp3">آل عمران</option>
-    <option value="018.mp3">الكهف</option>
-    <option value="036.mp3">يس</option>
-    <option value="055.mp3">الرحمن</option>
-    <option value="114.mp3">الناس</option>
-  </select>
-
-  <br><br>
-
-  <!-- أزرار -->
-  <button onclick="playSurah()">▶️ استماع</button>
-  <button onclick="downloadSurah()">⬇️ تحميل</button>
-
-  <br><br>
-
-  <!-- مشغل الصوت -->
-  <audio id="player" controls style="width:80%"></audio>
-
-  <script>
-    function playSurah() {
-      const reciter = document.getElementById("reciter").value;
-      const surah   = document.getElementById("surah").value;
-      const audio   = document.getElementById("player");
-      const url     = reciter + surah;
-
-      console.log("رابط الصوت:", url); // يظهر الرابط في Console
-      audio.src = url;
-      audio.load();
-      audio.play().catch(err => {
-        console.log("منع التشغيل:", err);
-        alert("اضغط زر التشغيل في المشغل أسفل علشان يبدأ الصوت");
-      });
-    }
-
-    function downloadSurah() {
-      const reciter = document.getElementById("reciter").value;
-      const surah   = document.getElementById("surah").value;
-      const link    = document.createElement("a");
-      link.href     = reciter + surah;
-      link.download = surah;
-      link.click();
-    }
-  </script>
+  <audio controls style="width:80%">
+    <source src="https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/002.mp3" type="audio/mpeg">
+    المتصفح لا يدعم تشغيل الصوت.
+  </audio>
 
 </body>
 </html>
