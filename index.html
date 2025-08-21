@@ -413,52 +413,41 @@
 <footer>جميع الحقوق محفوظة © المكتبة الإسلامية</footer>
   
 <script>
-// تشغيل السورة بطريقة مضمونة
-function playSurah() {
-  const reciter = document.getElementById("reciter").value;   // مثال: https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/
-  const surah   = document.getElementById("surah").value;     // مثال: 002.mp3
-  const url     = new URL(surah, reciter).href;               // يكوّن الرابط الصحيح حتى لو في / آخر
+  function playSurah() {
+    const reciter = document.getElementById("reciter").value;
+    const surah   = document.getElementById("surah").value;
+    const audio   = document.getElementById("player");
+    const url     = reciter + surah;
 
-  const audio = document.getElementById("player");
+    // نغير المصدر
+    audio.src = url;
+    audio.load();
 
-  // تنظيف وإعادة تحميل قبل التشغيل (يحُل مشاكل بعض المتصفحات)
-  try { audio.pause(); } catch(e) {}
-  audio.removeAttribute("src");
-  audio.load();
-
-  // للأمان في بعض الأجهزة
-  audio.crossOrigin = "anonymous";
-
-  // ضبط المصدر والتشغيل بعد تحميله
-  audio.src = url;
-  audio.load();
-
-  // بعض المتصفحات ترجع Promise لازم نتعامل معه
-  const p = audio.play();
-  if (p && typeof p.then === "function") {
-    p.catch(err => {
-      // في حال منع التشغيل التلقائي: اطلب من المستخدم يضغط زر التشغيل في المشغل
-      alert("لو مفيش صوت: اضغط زر ▶️ في المشغّل أسفل الأزرار.");
-      console.log("Audio play blocked or failed:", err);
+    // نحاول نشغل بعد الضغطة
+    audio.play().catch(err => {
+      console.log("منع التشغيل:", err);
+      alert("اضغط زر التشغيل في المشغل أسفل علشان يبدأ الصوت");
     });
   }
-}
 
-// تحميل الملف مباشرةً
-function downloadSurah() {
-  const reciter = document.getElementById("reciter").value;
-  const surah   = document.getElementById("surah").value;
-  const url     = new URL(surah, reciter).href;
+  function downloadSurah() {
+    const reciter = document.getElementById("reciter").value;
+    const surah   = document.getElementById("surah").value;
+    const link    = document.createElement("a");
+    link.href     = reciter + surah;
+    link.download = surah;
+    link.click();
+  }
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = surah;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}
-</script>
-
+  function searchSurah() {
+    const input   = document.getElementById("search").value.toLowerCase();
+    const options = document.getElementById("surah").options;
+    for (let i = 0; i < options.length; i++) {
+      const text = options[i].text.toLowerCase();
+      options[i].style.display = text.includes(input) ? "block" : "none";
+    }
+  }
+    </script>
 </body>
 
 </html>
