@@ -1,104 +1,119 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>📖 القرآن الكريم</title>
-    <style>
-      body {
-        font-family: Tahoma, sans-serif;
-        background: url("https://i.ibb.co/dt1Qx5L/quran-bg.jpg") no-repeat center center fixed;
-        background-size: cover;
-        margin: 0;
-        padding: 20px;
-        color: #fff;
-      }
-      h1 {
-        text-align: center;
-        background: #065f46;
-        padding: 10px;
-        border-radius: 8px;
-      }
-      .container {
-        max-width: 500px;
-        margin: auto;
-        background: rgba(0,0,0,0.7);
-        padding: 20px;
-        border-radius: 12px;
-      }
-      label {
-        display: block;
-        margin-top: 10px;
-        margin-bottom: 5px;
-      }
-      select, audio {
-        width: 100%;
-        margin-bottom: 15px;
-        padding: 8px;
-        border-radius: 6px;
-        border: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>📖 القرآن الكريم</h1>
-    <div class="container">
-      <label>اختر القارئ:</label>
-      <select id="reciter" onchange="loadSurahs()">
-        <option value="">-- اختر قارئ --</option>
-        <option value="https://server8.mp3quran.net/afs/">عبدالرحمن السديس</option>
-        <option value="https://server12.mp3quran.net/maher/">ماهر المعيقلي</option>
-        <option value="https://server6.mp3quran.net/qtm/">مشاري العفاسي</option>
-      </select>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مكتبة إسلامية</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://i.ibb.co/0Q0Q0Ym/islamic-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+    header {
+      background: rgba(0, 100, 0, 0.9);
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    nav {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+    }
+    nav a {
+      color: #fff;
+      margin: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      margin: 20px;
+      border-radius: 12px;
+    }
+    select, button {
+      padding: 8px;
+      margin: 5px;
+      border-radius: 8px;
+      border: none;
+    }
+    audio {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
 
-      <label>اختر السورة:</label>
-      <select id="surah" onchange="playAudio()">
-        <option value="">-- اختر السورة --</option>
-      </select>
+<header>📖 المكتبة الإسلامية</header>
 
-      <audio id="player" controls></audio>
-    </div>
+<nav>
+  <a href="#quran">القرآن الكريم</a>
+  <a href="#hadith">الأحاديث</a>
+  <a href="#dua">الأدعية</a>
+</nav>
 
-    <script>
-      const surahSelect = document.getElementById("surah");
-      const reciterSelect = document.getElementById("reciter");
-      const player = document.getElementById("player");
+<!-- قسم القرآن الكريم -->
+<section id="quran">
+  <h2>القرآن الكريم</h2>
+  <label>اختر القارئ:</label>
+  <select id="reciter">
+    <option value="https://download.quranicaudio.com/quran/abdul_baset/mujawwad/">عبد الباسط</option>
+    <option value="https://download.quranicaudio.com/quran/menshawi/mujawwad/">المنشاوي</option>
+    <option value="https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/">المعيقلي</option>
+  </select>
 
-      // أسماء السور (1-114)
-      const surahs = [
-        "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
-        "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
-        "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت",
-        "الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر",
-        "غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات",
-        "ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر",
-        "الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة",
-        "المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات",
-        "عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر",
-        "البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة",
-        "العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون",
-        "النصر","المسد","الإخلاص","الفلق","الناس"
-      ];
+  <label>اختر السورة:</label>
+  <select id="surah">
+    <option value="001.mp3">الفاتحة</option>
+    <option value="002.mp3">البقرة</option>
+    <option value="003.mp3">آل عمران</option>
+  </select>
 
-      // تحميل قائمة السور
-      function loadSurahs() {
-        surahSelect.innerHTML = "<option value=''>-- اختر السورة --</option>";
-        surahs.forEach((name, i) => {
-          const num = (i+1).toString().padStart(3,'0');
-          const opt = document.createElement("option");
-          opt.value = num + ".mp3";
-          opt.textContent = name;
-          surahSelect.appendChild(opt);
-        });
-      }
+  <br>
+  <button onclick="playQuran()">▶️ استماع</button>
+  <button onclick="downloadQuran()">⬇️ تحميل</button>
+  <br>
+  <audio id="player" controls></audio>
+</section>
 
-      // تشغيل الصوت
-      function playAudio() {
-        if(reciterSelect.value && surahSelect.value) {
-          player.src = reciterSelect.value + surahSelect.value;
-          player.play();
-        }
-      }
-    </script>
-  </body>
+<!-- قسم الأحاديث -->
+<section id="hadith">
+  <h2>🕌 الأحاديث النبوية</h2>
+  <p><b>قال رسول الله ﷺ:</b> "إنما الأعمال بالنيات وإنما لكل امرئ ما نوى" (متفق عليه).</p>
+  <p><b>قال رسول الله ﷺ:</b> "خيركم من تعلم القرآن وعلمه" (رواه البخاري).</p>
+</section>
+
+<!-- قسم الأدعية -->
+<section id="dua">
+  <h2>🤲 الأدعية</h2>
+  <p>🌙 دعاء الاستغفار: "اللهم إنك عفو تحب العفو فاعفُ عني".</p>
+  <p>☀️ دعاء الصباح: "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور".</p>
+</section>
+
+<script>
+  function playQuran() {
+    let reciter = document.getElementById("reciter").value;
+    let surah = document.getElementById("surah").value;
+    let audio = document.getElementById("player");
+    audio.src = reciter + surah;
+    audio.play();
+  }
+
+  function downloadQuran() {
+    let reciter = document.getElementById("reciter").value;
+    let surah = document.getElementById("surah").value;
+    let link = document.createElement("a");
+    link.href = reciter + surah;
+    link.download = surah;
+    link.click();
+  }
+</script>
+
+</body>
 </html>
