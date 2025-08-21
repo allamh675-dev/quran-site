@@ -3,149 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📖 NoorQuranOnline | القرآن الكريم كامل</title>
 
-  <title>📖 القرآن الكريم | NoorQuranOnline</title>
-
-  <meta name="description" content="القرآن الكريم كامل بصوت كبار القراء مع المصحف، الأحاديث، الأدعية، وخلفيات إسلامية.">
-  <meta name="keywords" content="القرآن الكريم, تلاوة, قراء, أدعية, أحاديث, مصحف, إسلام, تلاوات, خلفيات إسلامية">
-  <meta name="language" content="ar">
+  <!-- Meta -->
+  <meta name="description" content="القرآن الكريم كامل بصوت كبار القراء + مصحف مكتوب + أحاديث نبوية + أدعية">
+  <meta name="keywords" content="القرآن الكريم, تلاوة, مصحف, عبد الباسط, الحصري, العفاسي, المعيقلي, الغامدي, أدعية, أحاديث">
   <meta name="author" content="NoorQuranOnline">
+  <meta name="language" content="ar">
 
-  <!-- OG + Twitter -->
-  <meta property="og:title" content="📖 القرآن الكريم | NoorQuranOnline">
-  <meta property="og:description" content="القرآن الكريم كامل بصوت كبار القراء مع المصحف، الأحاديث، الأدعية، وخلفيات إسلامية.">
+  <!-- OG -->
+  <meta property="og:title" content="NoorQuranOnline | القرآن الكريم كامل">
+  <meta property="og:description" content="تلاوات بصوت كبار القراء + مصحف مكتوب + أحاديث + أدعية">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://noorquranonline.com/">
   <meta property="og:image" content="https://iili.io/K91WZj1.jpg">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="📖 القرآن الكريم | NoorQuranOnline">
-  <meta name="twitter:description" content="القرآن الكريم كامل بصوت كبار القراء مع المصحف، الأحاديث، الأدعية، وخلفيات إسلامية.">
-  <meta name="twitter:image" content="https://iili.io/K91WZj1.jpg">
-
   <style>
     body {
-      font-family: "Tahoma", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url('https://iili.io/K91WZj1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      font-family: Tahoma, sans-serif;
+      margin:0; padding:0;
+      background:url('https://iili.io/K91WZj1.jpg') no-repeat center center fixed;
+      background-size:cover; color:#fff;
     }
-    header {
-      background: rgba(0,0,0,0.6);
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {margin:0;}
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      padding: 0;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      background: rgba(0,0,0,0.6);
-      padding: 10px 15px;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    nav ul li a:hover {background: rgba(0,0,0,0.8);}
-    section {
-      margin: 20px;
-      padding: 20px;
-      background: rgba(0,0,0,0.5);
-      border-radius: 10px;
-    }
+    header {background:rgba(0,0,0,0.7); padding:20px; text-align:center;}
+    nav {display:flex; justify-content:center; gap:10px; flex-wrap:wrap; background:rgba(0,0,0,0.5);}
+    nav a {color:#fff; text-decoration:none; padding:10px 15px; border-radius:6px; background:rgba(255,255,255,0.1);}
+    nav a:hover {background:rgba(0,0,0,0.8);}
+    section {margin:20px; padding:20px; background:rgba(0,0,0,0.6); border-radius:10px;}
     h2 {text-align:center;}
-    .readers, .images {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
+    footer {background:rgba(0,0,0,0.8); padding:15px; text-align:center; margin-top:20px;}
+
+    select, button {
+      padding: 8px; margin: 5px; border-radius: 6px; border:none;
     }
-    .readers a, .images img {
-      display: block;
-      text-align: center;
-      padding: 10px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 8px;
-      color: #fff;
-      text-decoration: none;
-    }
-    .images img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    footer {
-      text-align: center;
-      background: rgba(0,0,0,0.7);
-      padding: 15px;
-      margin-top: 20px;
-    }
-    footer a {
-      color: #0f0;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    button {cursor:pointer; background:#007bff; color:#fff;}
+    button:hover {background:#0056b3;}
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>📖 NoorQuranOnline</h1>
-    <p>القرآن الكريم كامل - تلاوات، أدعية، أحاديث، مصحف، خلفيات إسلامية</p>
-  </header>
+<header>
+  <h1>📖 NoorQuranOnline</h1>
+  <p>القرآن الكريم كامل – تلاوات، أحاديث، أدعية، مصحف مكتوب</p>
+</header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">🏠 الرئيسية</a></li>
-      <li><a href="quran.html">📖 القرآن الكريم</a></li>
-      <li><a href="hadith.html">📜 الأحاديث</a></li>
-      <li><a href="dua.html">🤲 الأدعية</a></li>
-      <li><a href="mushaf.html">📚 المصحف</a></li>
-    </ul>
-  </nav>
+<nav>
+  <a href="#quran">📖 القرآن</a>
+  <a href="#apl">🎧 التلاوات</a>
+  <a href="#mushaf">📚 المصحف المكتوب</a>
+  <a href="#hadith">📜 الأحاديث</a>
+  <a href="#dua">🤲 الأدعية</a>
+  <a href="#support">💚 الدعم</a>
+  <a href="#contact">📩 تواصل</a>
+</nav>
 
-  <!-- قسم القراء -->
-  <section>
-    <h2>🎙️ استمع إلى كبار القراء</h2>
-    <div class="readers">
-      <a href="#">الشيخ عبد الباسط عبد الصمد</a>
-      <a href="#">الشيخ محمود خليل الحصري</a>
-      <a href="#">الشيخ مشاري العفاسي</a>
-      <a href="#">الشيخ ماهر المعيقلي</a>
-      <a href="#">الشيخ سعد الغامدي</a>
-    </div>
-  </section>
+<!-- قسم القرآن -->
+<section id="quran">
+  <h2>📖 القرآن الكريم</h2>
+  <p>القرآن الكريم كاملاً مع التلاوات والمصحف المكتوب.</p>
+</section>
 
-  <!-- قسم الصور الإسلامية -->
-  <section>
-    <h2>🖼️ خلفيات إسلامية</h2>
-    <div class="images">
-      <img src="https://iili.io/K91WZj1.jpg" alt="خلفية إسلامية">
-      <img src="https://iili.io/XXXXXX.jpg" alt="خلفية إسلامية">
-    </div>
-  </section>
+<!-- مشغل التلاوات APL -->
+<section id="apl">
+  <h2>🎧 استمع للقرآن</h2>
+  <label>اختر الشيخ:</label>
+  <select id="reciter">
+    <option value="https://server8.mp3quran.net/basit/">عبد الباسط</option>
+    <option value="https://server12.mp3quran.net/husr/">الحصري</option>
+    <option value="https://server6.mp3quran.net/afs/">العفاسي</option>
+    <option value="https://server11.mp3quran.net/maher/">ماهر المعيقلي</option>
+    <option value="https://server7.mp3quran.net/s_gmd/">سعد الغامدي</option>
+  </select>
 
-  <!-- قسم الدعم -->
-  <section>
-    <h2>💚 ادعمنا</h2>
-    <p>يمكنك دعم الموقع عبر <a href="https://paypal.me/Hazemkhalef" target="_blank">PayPal</a></p>
-  </section>
+  <label>اختر السورة:</label>
+  <select id="surah"></select>
 
-  <!-- قسم التواصل -->
-  <section>
-    <h2>📞 تواصل معنا</h2>
-    <p>📧 البريد: hazemallam506070@gmail.com</p>
-    <p>📱 الهاتف: 01005546329</p>
-  </section>
+  <button onclick="playSurah()">▶️ استماع</button>
+  <audio id="player" controls></audio>
+</section>
 
-  <footer>
-    <p>جميع الحقوق محفوظة © 2025 NoorQuranOnline</p>
-  </footer>
+<!-- المصحف -->
+<section id="mushaf">
+  <h2>📚 المصحف المكتوب (جميع السور)</h2>
+  <ul id="mushafList"></ul>
+</section>
+
+<!-- الأحاديث -->
+<section id="hadith">
+  <h2>📜 أحاديث نبوية</h2>
+  <p>قال رسول الله ﷺ: "إنما الأعمال بالنيات وإنما لكل امرئ ما نوى".</p>
+  <p>قال رسول الله ﷺ: "خيركم من تعلم القرآن وعلمه".</p>
+  <p>قال رسول الله ﷺ: "الدين النصيحة".</p>
+</section>
+
+<!-- الأدعية -->
+<section id="dua">
+  <h2>🤲 الأدعية</h2>
+  <p>🌙 اللهم إنك عفو تحب العفو فاعف عنا.</p>
+  <p>☀️ اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت.</p>
+  <p>🤲 ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.</p>
+</section>
+
+<!-- الدعم -->
+<section id="support">
+  <h2>💚 ادعمنا</h2>
+  <p>ساهم معنا في نشر الخير:</p>
+  <a href="https://paypal.me/Hazemkhalef" target="_blank">💳 التبرع عبر PayPal</a>
+  <p>📱 فودافون كاش: 01005546329</p>
+</section>
+
+<!-- تواصل -->
+<section id="contact">
+  <h2>📩 تواصل معنا</h2>
+  <p>📧 البريد: hazemallam506070@gmail.com</p>
+</section>
+
+<footer>
+  <p>جميع الحقوق محفوظة © NoorQuranOnline 2025</p>
+</footer>
+
+<script>
+  // السور 114
+  const surahs = [
+    "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
+    "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
+    "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
+    "لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر",
+    "فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق",
+    "الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
+    "الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج",
+    "نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس",
+    "التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
+    "الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات",
+    "القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر",
+    "المسد","الإخلاص","الفلق","الناس"
+  ];
+
+  // ملء قائمة السور للتشغيل
+  const surahSelect = document.getElementById("surah");
+  surahs.forEach((name,i)=>{
+    let opt = document.createElement("option");
+    opt.value = String(i+1).padStart(3,"0")+".mp3";
+    opt.textContent = name;
+    surahSelect.appendChild(opt);
+  });
+
+  // ملء قائمة المصحف المكتوب
+  const mushafList = document.getElementById("mushafList");
+  surahs.forEach((name,i)=>{
+    let li = document.createElement("li");
+    li.innerHTML = `<a href="https://surahquran.com/quran-html/${i+1}.html" target="_blank">${name}</a>`;
+    mushafList.appendChild(li);
+  });
+
+  // تشغيل السورة
+  function playSurah(){
+    const reciter = document.getElementById("reciter").value;
+    const surah = document.getElementById("surah").value;
+    let player = document.getElementById("player");
+    player.src = reciter+surah;
+    player.play();
+  }
+</script>
 
 </body>
 </html>
