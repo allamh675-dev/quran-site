@@ -37,49 +37,49 @@
 
   nav a:hover {
     background: rgba(0,0,0,0.7);
-    /* قسم القراء مكتوب */
-#quran-readers {
-  background: rgba(0,0,0,0.6);
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.readers-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.reader {
-  background: rgba(255,255,255,0.1);
-  padding: 15px;
-  border-radius: 10px;
-}
-
-.reader h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.reader a {
-  display: inline-block;
-  padding: 8px 12px;
-  background: #0070ba;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.reader a:hover {
-  background: #005b94;
-}
   }
 
-</style>
+  /* قسم القراء مكتوب */
+  #quran-readers {
+    background: rgba(0,0,0,0.6);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .readers-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .reader {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .reader h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .reader a {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #0070ba;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .reader a:hover {
+    background: #005b94;
+  }
+  </style>
 </head>
 <body>
   
@@ -92,7 +92,6 @@
     <a href="#contact">تواصل</a>
     <a href="#support">💚 ادعمنا</a>
   </nav>
-
 
 <!-- قسم القرآن الكريم -->
 <section id="quran">
@@ -161,6 +160,7 @@
     <small>(فودافون كاش / محفظة رقمية)</small>
   </div>
 </section>
+
 <!-- قسم قراء القرآن الكريم (مصحف مكتوب) -->
 <section id="quran-readers">
   <h2>📖 قراء القرآن الكريم (المصحف مكتوب)</h2>
@@ -186,6 +186,7 @@
     </div>
   </div>
 </section>
+
 <footer>جميع الحقوق محفوظة © المكتبة الإسلامية</footer>
 
 <script>
@@ -220,7 +221,7 @@ fetch("https://www.mp3quran.net/api/v3/suwar")
       opt.textContent = s.name;
       surahSelect.appendChild(opt);
     });
-  
+  });
 
 function playSurah() {
   const reciterId = reciterSelect.value;
