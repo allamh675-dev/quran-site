@@ -33,11 +33,12 @@
     h2 {text-align:center;}
     footer {background:rgba(0,0,0,0.8); padding:15px; text-align:center; margin-top:20px;}
 
-    select, button {
-      padding: 8px; margin: 5px; border-radius: 6px; border:none;
+    #aplPlaylist {list-style:none; padding:0; max-height:300px; overflow-y:auto;}
+    #aplPlaylist li {
+      cursor:pointer; padding:8px; margin:3px; background:#222; border-radius:5px;
     }
-    button {cursor:pointer; background:#007bff; color:#fff;}
-    button:hover {background:#0056b3;}
+    #aplPlaylist li:hover {background:#444;}
+    #aplPlaylist li.active {background:#007bff;}
   </style>
 </head>
 <body>
@@ -63,23 +64,21 @@
   <p>القرآن الكريم كاملاً مع التلاوات والمصحف المكتوب.</p>
 </section>
 
-<!-- مشغل التلاوات APL -->
+<!-- قسم التلاوات APL -->
 <section id="apl">
-  <h2>🎧 استمع للقرآن</h2>
+  <h2>🎧 استمع للقرآن (قائمة تشغيل كاملة)</h2>
+
   <label>اختر الشيخ:</label>
-  <select id="reciter">
-    <option value="https://server8.mp3quran.net/basit/">عبد الباسط</option>
-    <option value="https://server12.mp3quran.net/husr/">الحصري</option>
-    <option value="https://server6.mp3quran.net/afs/">العفاسي</option>
-    <option value="https://server11.mp3quran.net/maher/">ماهر المعيقلي</option>
-    <option value="https://server7.mp3quran.net/s_gmd/">سعد الغامدي</option>
+  <select id="aplReciter">
+    <option value="basit|https://server8.mp3quran.net/basit/">عبد الباسط</option>
+    <option value="husr|https://server12.mp3quran.net/husr/">الحصري</option>
+    <option value="afs|https://server6.mp3quran.net/afs/">العفاسي</option>
+    <option value="maher|https://server11.mp3quran.net/maher/">ماهر المعيقلي</option>
+    <option value="s_gmd|https://server7.mp3quran.net/s_gmd/">سعد الغامدي</option>
   </select>
 
-  <label>اختر السورة:</label>
-  <select id="surah"></select>
-
-  <button onclick="playSurah()">▶️ استماع</button>
-  <audio id="player" controls></audio>
+  <audio id="aplPlayer" controls></audio>
+  <ul id="aplPlaylist"></ul>
 </section>
 
 <!-- المصحف -->
@@ -123,8 +122,8 @@
 </footer>
 
 <script>
-  // السور 114
-  const surahs = [
+  // أسماء السور 114
+  const surahNames = [
     "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
     "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
     "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
@@ -139,31 +138,54 @@
     "المسد","الإخلاص","الفلق","الناس"
   ];
 
-  // ملء قائمة السور للتشغيل
-  const surahSelect = document.getElementById("surah");
-  surahs.forEach((name,i)=>{
-    let opt = document.createElement("option");
-    opt.value = String(i+1).padStart(3,"0")+".mp3";
-    opt.textContent = name;
-    surahSelect.appendChild(opt);
+  // مشغل APL
+  const aplReciter = document.getElementById("aplReciter");
+  const aplPlayer = document.getElementById("aplPlayer");
+  const aplPlaylist = document.getElementById("aplPlaylist");
+
+  let currentIndex = 0;
+  let currentServer = aplReciter.value.split("|")[1];
+
+  function loadPlaylist() {
+    aplPlaylist.innerHTML = "";
+    currentServer = aplReciter.value.split("|")[1];
+    surahNames.forEach((name,i)=>{
+      let li = document.createElement("li");
+      li.textContent = name;
+      li.dataset.src = currentServer + String(i+1).padStart(3,"0")+".mp3";
+      li.addEventListener("click", ()=>playTrack(i));
+      aplPlaylist.appendChild(li);
+    });
+    playTrack(0);
+  }
+
+  function playTrack(index){
+    let items = aplPlaylist.querySelectorAll("li");
+    items.forEach(el=>el.classList.remove("active"));
+    let track = items[index];
+    track.classList.add("active");
+    aplPlayer.src = track.dataset.src;
+    aplPlayer.play();
+    currentIndex = index;
+  }
+
+  aplPlayer.addEventListener("ended", ()=>{
+    currentIndex++;
+    if(currentIndex >= surahNames.length) currentIndex=0;
+    playTrack(currentIndex);
   });
 
-  // ملء قائمة المصحف المكتوب
+  aplReciter.addEventListener("change", loadPlaylist);
+
+  loadPlaylist();
+
+  // ملء المصحف المكتوب
   const mushafList = document.getElementById("mushafList");
-  surahs.forEach((name,i)=>{
+  surahNames.forEach((name,i)=>{
     let li = document.createElement("li");
     li.innerHTML = `<a href="https://surahquran.com/quran-html/${i+1}.html" target="_blank">${name}</a>`;
     mushafList.appendChild(li);
   });
-
-  // تشغيل السورة
-  function playSurah(){
-    const reciter = document.getElementById("reciter").value;
-    const surah = document.getElementById("surah").value;
-    let player = document.getElementById("player");
-    player.src = reciter+surah;
-    player.play();
-  }
 </script>
 
 </body>
