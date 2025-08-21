@@ -19,15 +19,15 @@
     nav a:hover { background: #046; }
     section { padding: 20px; margin: 20px; border-radius: 10px; background: rgba(0, 0, 0, 0.6); }
     h2 { text-align: center; margin-bottom: 15px; }
-    .quran-controls, .library, .dua-list { text-align: center; margin-top: 15px; }
+    .quran-controls { text-align: center; margin-top: 15px; }
     select, input { padding: 8px; margin: 5px; border-radius: 5px; border: none; }
     button { padding: 10px 20px; border: none; border-radius: 5px; margin-top: 10px; background: green; color: #fff; cursor: pointer; }
     button:hover { background: darkgreen; }
     audio { margin-top: 15px; width: 100%; }
+    footer { text-align: center; background: #024; padding: 15px; margin-top: 20px; }
     .dua-list p, .hadith-box { background: rgba(255,255,255,0.1); padding: 10px; margin: 10px 0; border-radius: 5px; }
     .library a { display: block; margin: 8px 0; color: #ff0; text-decoration: none; }
     .library a:hover { text-decoration: underline; }
-    footer { text-align: center; background: #024; padding: 15px; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -49,13 +49,25 @@
     <label>اختر القارئ: </label>
     <select id="reciter">
       <option value="https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/">مشاري راشد</option>
-      <option value="https://download.quranicaudio.com/quran/abdul_basit_murattal/">عبد الباسط</option>
-<option value="https://download.quranicaudio.com/quran/menshawi/mujawwad/">المنشاوي</option>
+      <option value="https://download.quranicaudio.com/quran/abdul_baset/mujawwad/">عبد الباسط مجود</option>
+      <option value="https://download.quranicaudio.com/quran/abdul_baset/murattal/">عبد الباسط مرتل</option>
+      <option value="https://download.quranicaudio.com/quran/mahmood_khaleel_al-husary/">الحصري</option>
+      <option value="https://download.quranicaudio.com/quran/menshawi/mujawwad/">المنشاوي مجود</option>
+      <option value="https://download.quranicaudio.com/quran/menshawi/murattal/">المنشاوي مرتل</option>
+      <option value="https://download.quranicaudio.com/quran/minshawy_reewayat_hafs_3an_3asim/">المنشاوي حفص</option>
+      <option value="https://download.quranicaudio.com/quran/saood_ash-shuraym/">سعود الشريم</option>
+      <option value="https://download.quranicaudio.com/quran/maher_almuaiqly/">ماهر المعيقلي</option>
+      <option value="https://download.quranicaudio.com/quran/ali_alhuthaify/">علي الحذيفي</option>
+      <option value="https://download.quranicaudio.com/quran/muhammad_jibreel/">محمد جبريل</option>
+      <option value="https://download.quranicaudio.com/quran/faris_abbad/">فارس عباد</option>
+      <option value="https://download.quranicaudio.com/quran/yasser_ad-dussary/">ياسر الدوسري</option>
+      <option value="https://download.quranicaudio.com/quran/ahmad_ibn_3ali_al-3ajamy/">أحمد العجمي</option>
+      <option value="https://download.quranicaudio.com/quran/abdullah_basfar/">عبد الله بصفر</option>
     </select>
     <br>
     <label>اختر السورة: </label>
     <select id="surah">
-      <!-- كل السور 001 → 114 -->
+      <!-- 114 سورة -->
       <option value="001.mp3">الفاتحة</option>
       <option value="002.mp3">البقرة</option>
       <option value="003.mp3">آل عمران</option>
@@ -172,13 +184,45 @@
       <option value="114.mp3">الناس</option>
     </select>
     <br>
-    <input type="text" id="search" placeholder="🔍 ابحث عن سورة..." onkeyup="searchSurah()">
-    <br>
     <button onclick="playSurah()">▶️ استماع</button>
     <button onclick="downloadSurah()">⬇️ تحميل</button>
     <audio id="player" controls></audio>
   </div>
 </section>
+
+<!-- قسم الأحاديث -->
+<section id="hadith">
+  <h2>📜 حديث اليوم</h2>
+  <div class="hadith-box" id="hadithBox"></div>
+</section>
+
+<!-- قسم الأدعية -->
+<section id="dua">
+  <h2>🤲 الأدعية</h2>
+  <div class="dua-list">
+    <p>🌙 اللهم بلغنا رمضان وأعنا على صيامه وقيامه.</p>
+    <p>🌙 اللهم اغفر لنا ولوالدينا وللمسلمين أجمعين.</p>
+    <p>🌙 اللهم اجعل القرآن ربيع قلوبنا ونور صدورنا.</p>
+  </div>
+</section>
+
+<!-- قسم المكتبة -->
+<section id="library">
+  <h2>📚 المكتبة الإسلامية</h2>
+  <div class="library">
+    <a href="https://waqfeya.net/" target="_blank">📖 مكتبة الوقف الإسلامية</a>
+    <a href="https://ia800905.us.archive.org/27/items/WAQ67676/01.pdf" target="_blank">📘 صحيح البخاري (PDF)</a>
+    <a href="https://ia800905.us.archive.org/27/items/WAQ67676/02.pdf" target="_blank">📘 صحيح مسلم (PDF)</a>
+  </div>
+</section>
+
+<!-- قسم التواصل -->
+<section id="contact">
+  <h2>📩 تواصل معنا</h2>
+  <p style="text-align:center">📧 البريد: islamic.library@example.com</p>
+</section>
+
+<footer>جميع الحقوق محفوظة © المكتبة الإسلامية</footer>
 
 <script>
   function playSurah() {
@@ -187,10 +231,12 @@
     const audio   = document.getElementById("player");
     audio.src = reciter + surah;
     audio.load();
-    audio.play().catch(err=>{
-      console.log("يجب الضغط على زر التشغيل في المشغل:", err);
+    audio.play().catch(err => {
+      console.log("يجب الضغط على زر التشغيل:", err);
+      alert("🎵 اضغط زر التشغيل في المشغل لبدء الصوت");
     });
   }
+
   function downloadSurah() {
     const reciter = document.getElementById("reciter").value;
     const surah   = document.getElementById("surah").value;
@@ -199,14 +245,14 @@
     link.download = surah;
     link.click();
   }
-  function searchSurah() {
-    let input = document.getElementById("search").value.toLowerCase();
-    let options = document.getElementById("surah").options;
-    for (let i = 0; i < options.length; i++) {
-      let text = options[i].text.toLowerCase();
-      options[i].style.display = text.includes(input) ? "block" : "none";
-    }
-  }
+
+  // أحاديث عشوائية
+  const ahadith = [
+    "قال رسول الله ﷺ: من سلك طريقاً يلتمس فيه علماً سهّل الله له به طريقاً إلى الجنة.",
+    "قال رسول الله ﷺ: لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه.",
+    "قال رسول الله ﷺ: تبسمك في وجه أخيك صدقة."
+  ];
+  document.getElementById("hadithBox").innerText = ahadith[Math.floor(Math.random()*ahadith.length)];
 </script>
 
 </body>
