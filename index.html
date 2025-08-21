@@ -37,6 +37,46 @@
 
   nav a:hover {
     background: rgba(0,0,0,0.7);
+    /* قسم القراء مكتوب */
+#quran-readers {
+  background: rgba(0,0,0,0.6);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.readers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.reader {
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.reader h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.reader a {
+  display: inline-block;
+  padding: 8px 12px;
+  background: #0070ba;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.reader a:hover {
+  background: #005b94;
+}
   }
 
 </style>
@@ -121,7 +161,31 @@
     <small>(فودافون كاش / محفظة رقمية)</small>
   </div>
 </section>
+<!-- قسم قراء القرآن الكريم (مصحف مكتوب) -->
+<section id="quran-readers">
+  <h2>📖 قراء القرآن الكريم (المصحف مكتوب)</h2>
+  <div class="readers-list">
+    <div class="reader">
+      <h3>📖 مصحف المدينة المنورة (حفص)</h3>
+      <a href="https://qurancomplex.gov.sa/hafs-mushaf" target="_blank">فتح المصحف كاملاً</a>
+    </div>
 
+    <div class="reader">
+      <h3>📖 مصحف ورش عن نافع</h3>
+      <a href="https://qurancomplex.gov.sa/warsh-mushaf" target="_blank">فتح المصحف كاملاً</a>
+    </div>
+
+    <div class="reader">
+      <h3>📖 مصحف الدوري عن أبي عمرو</h3>
+      <a href="https://qurancomplex.gov.sa/douri-mushaf" target="_blank">فتح المصحف كاملاً</a>
+    </div>
+
+    <div class="reader">
+      <h3>📖 مصحف قالون عن نافع</h3>
+      <a href="https://qurancomplex.gov.sa/qalon-mushaf" target="_blank">فتح المصحف كاملاً</a>
+    </div>
+  </div>
+</section>
 <footer>جميع الحقوق محفوظة © المكتبة الإسلامية</footer>
 
 <script>
@@ -156,7 +220,7 @@ fetch("https://www.mp3quran.net/api/v3/suwar")
       opt.textContent = s.name;
       surahSelect.appendChild(opt);
     });
-  });
+  
 
 function playSurah() {
   const reciterId = reciterSelect.value;
