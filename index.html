@@ -32,7 +32,7 @@
     .surah-item {
       background:rgba(255,255,255,0.1); padding:10px; border-radius:8px; text-align:center;
     }
-    .surah-item img {width:50px; display:block; margin:0 auto 10px;}
+    .surah-item img {width:40px; display:block; margin:0 auto 10px;}
     .surah-item button, .surah-item a {
       display:inline-block; margin:5px; padding:6px 12px;
       border:none; border-radius:6px; cursor:pointer;
@@ -73,8 +73,8 @@
   <div class="controls">
     <label>اختر الشيخ:</label>
     <select id="reciter">
-      <option value="https://server10.mp3quran.net/sds/">عبدالرحمن السديسي</option>
-      <option value="https://server7.mp3quran.net/s_gmd/">سعد الغامدي</option>
+      <option value="sds">عبدالرحمن السديسي</option>
+      <option value="s_gmd">سعد الغامدي</option>
     </select>
     <br>
     <label>🔍 ابحث عن سورة:</label>
@@ -125,6 +125,13 @@
 </footer>
 
 <script>
+  // روابط الشيوخ
+  const reciters = {
+    sds: "https://server10.mp3quran.net/sds/",   // ✅ رابط السديسي الصحيح
+    s_gmd: "https://server7.mp3quran.net/s_gmd/" // الغامدي
+  };
+
+  // أسماء السور
   const surahs = [
     "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
     "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
@@ -141,10 +148,12 @@
   ];
 
   const surahList = document.getElementById("surahList");
-  const reciter = document.getElementById("reciter");
+  const reciterSelect = document.getElementById("reciter");
   const player = document.getElementById("player");
   const search = document.getElementById("search");
+  const mushafList = document.getElementById("mushafList");
 
+  // بناء قائمة السور
   function renderSurahs(filter=""){
     surahList.innerHTML = "";
     surahs.forEach((name,i)=>{
@@ -155,19 +164,28 @@
         <img src="https://iili.io/K91WZj1.jpg" alt="surah">
         <h4>${name}</h4>
         <button class="play-btn" onclick="playSurah(${i+1})">▶️ تشغيل</button>
-        <a class="download-btn" href="\${reciter.value}${String(i+1).padStart(3,'0')}.mp3" download>⬇️ تحميل</a>
+        <a class="download-btn" href="${reciters[reciterSelect.value]}${String(i+1).padStart(3,'0')}.mp3" download>⬇️ تحميل</a>
       `;
       surahList.appendChild(div);
     });
   }
   renderSurahs();
 
+  // تشغيل السورة
   function playSurah(i){
-    player.src = reciter.value + String(i).padStart(3,"0") + ".mp3";
+    player.src = reciters[reciterSelect.value] + String(i).padStart(3,"0") + ".mp3";
     player.play();
   }
 
+  // البحث
   search.addEventListener("input", e => renderSurahs(e.target.value));
+
+  // بناء المصحف المكتوب
+  surahs.forEach((name,i)=>{
+    let li = document.createElement("li");
+    li.innerHTML = `<a href="https://surahquran.com/quran-html/${i+1}.html" target="_blank">${name}</a>`;
+    mushafList.appendChild(li);
+  });
 </script>
 
 </body>
