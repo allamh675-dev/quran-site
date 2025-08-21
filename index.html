@@ -411,46 +411,53 @@
 </section>
 
 <footer>جميع الحقوق محفوظة © المكتبة الإسلامية</footer>
+  
 <script>
-  function playSurah() {
-    let reciter = document.getElementById("reciter").value;
-    let surah = document.getElementById("surah").value;
-    let audio = document.getElementById("player");
+// تشغيل السورة بطريقة مضمونة
+function playSurah() {
+  const reciter = document.getElementById("reciter").value;   // مثال: https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/
+  const surah   = document.getElementById("surah").value;     // مثال: 002.mp3
+  const url     = new URL(surah, reciter).href;               // يكوّن الرابط الصحيح حتى لو في / آخر
 
-    audio.src = reciter + surah;
-    audio.load(); // تحميل الملف قبل التشغيل
+  const audio = document.getElementById("player");
 
-    audio.play().catch(() => {
-      alert("⚠️ المتصفح منع التشغيل التلقائي. اضغط زر التشغيل يدويًا 👆");
+  // تنظيف وإعادة تحميل قبل التشغيل (يحُل مشاكل بعض المتصفحات)
+  try { audio.pause(); } catch(e) {}
+  audio.removeAttribute("src");
+  audio.load();
+
+  // للأمان في بعض الأجهزة
+  audio.crossOrigin = "anonymous";
+
+  // ضبط المصدر والتشغيل بعد تحميله
+  audio.src = url;
+  audio.load();
+
+  // بعض المتصفحات ترجع Promise لازم نتعامل معه
+  const p = audio.play();
+  if (p && typeof p.then === "function") {
+    p.catch(err => {
+      // في حال منع التشغيل التلقائي: اطلب من المستخدم يضغط زر التشغيل في المشغل
+      alert("لو مفيش صوت: اضغط زر ▶️ في المشغّل أسفل الأزرار.");
+      console.log("Audio play blocked or failed:", err);
     });
   }
+}
 
-  function downloadSurah() {
-    let reciter = document.getElementById("reciter").value;
-    let surah = document.getElementById("surah").value;
-    let link = document.createElement("a");
-    link.href = reciter + surah;
-    link.download = surah;
-    link.click();
-  }
+// تحميل الملف مباشرةً
+function downloadSurah() {
+  const reciter = document.getElementById("reciter").value;
+  const surah   = document.getElementById("surah").value;
+  const url     = new URL(surah, reciter).href;
 
-  function searchSurah() {
-    let input = document.getElementById("search").value.toLowerCase();
-    let options = document.getElementById("surah").options;
-    for (let i = 0; i < options.length; i++) {
-      let text = options[i].text.toLowerCase();
-      options[i].style.display = text.includes(input) ? "block" : "none";
-    }
-  }
-
-  // أحاديث عشوائية
-  const ahadith = [
-    "قال رسول الله ﷺ: من سلك طريقاً يلتمس فيه علماً سهّل الله له به طريقاً إلى الجنة.",
-    "قال رسول الله ﷺ: لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه.",
-    "قال رسول الله ﷺ: تبسمك في وجه أخيك صدقة."
-  ];
-  document.getElementById("hadithBox").innerText = ahadith[Math.floor(Math.random()*ahadith.length)];
-    </script>
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = surah;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+</script>
 
 </body>
 
