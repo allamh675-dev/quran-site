@@ -2,10 +2,115 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>القرآن الكريم</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📖 القرآن الكريم | NoorQuranOnline</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://iili.io/K91WZj1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    main {
+      padding: 20px;
+      margin: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+    }
+
+    .suras {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .suras a {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .suras a:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>📖 صفحة القرآن الكريم</h1>
-  <p>هنا هتضيف المحتوى الخاص بسور القرآن أو القرّاء.</p>
+  <header>
+    <h1>📖 صفحة القرآن الكريم</h1>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="quran.html">القرآن الكريم</a>
+      <a href="hadith.html">الأحاديث</a>
+      <a href="dua.html">الأدعية</a>
+      <a href="mushaf.html">المصحف</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>تصفح سور القرآن الكريم</h2>
+    <p>اختر أي سورة للانتقال إليها:</p>
+
+    <div class="suras">
+      <a href="#">الفاتحة</a>
+      <a href="#">البقرة</a>
+      <a href="#">آل عمران</a>
+      <a href="#">النساء</a>
+      <a href="#">المائدة</a>
+      <a href="#">الأنعام</a>
+      <a href="#">الأعراف</a>
+      <a href="#">الأنفال</a>
+      <a href="#">التوبة</a>
+      <a href="#">يونس</a>
+      <!-- 🔹 كمل باقي السور هنا -->
+    </div>
+  </main>
+
+  <footer>
+    <p>جميع الحقوق محفوظة © NoorQuranOnline</p>
+  </footer>
 </body>
 </html>
