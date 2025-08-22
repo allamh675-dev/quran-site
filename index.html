@@ -4,40 +4,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📖 NoorQuranOnline | القرآن الكريم كامل</title>
+
+  <!-- Meta -->
+  <meta name="description" content="القرآن الكريم كامل بصوت الشيخ سعد الغامدي + مصحف مكتوب + أحاديث + أدعية + دعم وتواصل">
+  <meta name="keywords" content="القرآن الكريم, سعد الغامدي, تلاوة, مصحف, أدعية, أحاديث">
+  <meta name="author" content="NoorQuranOnline">
+  <meta name="language" content="ar">
+
   <style>
     body {
       font-family: Tahoma, sans-serif;
-      margin: 0; padding: 0;
-      background: url('https://iili.io/K91WZj1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      margin:0; padding:0;
+      background:url('https://iili.io/K91WZj1.jpg') no-repeat center center fixed;
+      background-size:cover; color:#fff;
     }
-    header {background: rgba(0,0,0,0.8); padding: 20px; text-align: center;}
-    nav {display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; background: rgba(0,0,0,0.7);}
-    nav a {color:#fff; text-decoration:none; padding:10px 15px; border-radius:6px; background:rgba(255,255,255,0.1);}
-    nav a:hover {background:rgba(0,0,0,0.9);}
-    section {margin:20px; padding:20px; background:rgba(0,0,0,0.6); border-radius:10px;}
-    h2 {text-align:center;}
-    footer {background:rgba(0,0,0,0.9); padding:15px; text-align:center; margin-top:20px;}
 
-    select, button {
-      padding: 8px; margin: 5px; border-radius: 6px; border:none; font-size:14px;
+    /* الهيدر */
+    header {
+      background:#065f46;
+      padding:20px; text-align:center;
     }
-    button {cursor:pointer; background:#007bff; color:#fff;}
-    button:hover {background:#0056b3;}
-    .audio-player {text-align:center;}
+    header h1 {margin:0; font-size:26px;}
+    header p {margin:5px 0 0;}
+
+    /* القائمة */
+    nav {
+      display:flex; justify-content:center; flex-wrap:wrap;
+      background:#0d3b66; padding:10px;
+    }
+    nav a {
+      color:#fff; text-decoration:none;
+      margin:5px 10px; padding:8px 14px;
+      border-radius:6px; background:#124559;
+    }
+    nav a:hover {background:#062c43;}
+
+    section {
+      margin:20px; padding:20px;
+      background:rgba(0,0,0,0.6);
+      border-radius:10px;
+    }
+    h2 {text-align:center; margin-bottom:15px;}
+
+    /* التلاوة */
+    .player-box {
+      display:flex; flex-wrap:wrap; gap:20px;
+      justify-content:center; align-items:flex-start;
+    }
+    .controls {
+      flex:1; min-width:250px;
+      background:#124559; padding:15px; border-radius:8px;
+    }
+    .surah-list {
+      flex:1; min-width:200px;
+      max-height:300px; overflow-y:auto;
+      background:#062c43; padding:10px; border-radius:8px;
+    }
+    .surah-list button {
+      display:block; width:100%;
+      margin:3px 0; padding:6px;
+      border:none; border-radius:6px;
+      background:#1e6091; color:#fff;
+      cursor:pointer;
+    }
+    .surah-list button:hover {background:#144552;}
+
+    audio {width:100%; margin-top:10px;}
+    .download {display:block; margin-top:10px; text-align:center;}
+
+    /* المصحف */
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+      gap:10px;
+    }
+    .grid button {
+      padding:8px; border:none;
+      background:#1e6091; color:#fff;
+      border-radius:6px; cursor:pointer;
+    }
+    .grid button:hover {background:#144552;}
+    .popup {
+      display:none; background:#000;
+      padding:20px; margin-top:15px;
+      border-radius:8px; max-height:400px;
+      overflow-y:auto;
+    }
+
+    footer {
+      background:#000; text-align:center;
+      padding:15px; margin-top:20px;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <h1>📖 NoorQuranOnline</h1>
-  <p>القرآن الكريم كامل – تلاوات، أحاديث، أدعية، مصحف مكتوب</p>
+  <p>القرآن الكريم كامل – تلاوة سعد الغامدي + مصحف مكتوب + أحاديث + أدعية</p>
 </header>
 
 <nav>
   <a href="#quran">📖 القرآن</a>
-  <a href="#apl">🎧 التلاوات</a>
+  <a href="#recitation">🎧 التلاوة</a>
   <a href="#mushaf">📚 المصحف المكتوب</a>
   <a href="#hadith">📜 الأحاديث</a>
   <a href="#dua">🤲 الأدعية</a>
@@ -45,62 +114,33 @@
   <a href="#contact">📩 تواصل</a>
 </nav>
 
-<!-- قسم القرآن -->
-<section id="quran">
-  <h2>📖 القرآن الكريم</h2>
-  <p>القرآن الكريم كاملاً مع التلاوات والمصحف المكتوب.</p>
-</section>
-
-<!-- مشغل التلاوات -->
-<section id="apl">
-  <h2>🎧 استمع للقرآن الكريم</h2>
-  <div class="audio-player">
-    <label>اختر القارئ:</label>
-    <select id="reciter">
-      <option value="https://server8.mp3quran.net/basit/">عبد الباسط عبد الصمد</option>
-      <option value="https://server12.mp3quran.net/husr/">محمود خليل الحصري</option>
-      <option value="https://server6.mp3quran.net/afs/">مشاري العفاسي</option>
-      <option value="https://server11.mp3quran.net/maher/">ماهر المعيقلي</option>
-      <option value="https://server7.mp3quran.net/s_gmd/">سعد الغامدي</option>
-      <option value="https://server10.mp3quran.net/qtm/">عبد الرحمن السديس</option>
-      <option value="https://server14.mp3quran.net/jbr/">محمد جبريل</option>
-      <option value="https://server15.mp3quran.net/shuraim/">سعود الشريم</option>
-      <option value="https://server16.mp3quran.net/mtrod/">عبد الله المطرود</option>
-      <option value="https://server17.mp3quran.net/ayman/">أيمن سويد</option>
-      <option value="https://server18.mp3quran.net/farsi/">إبراهيم الأخضر</option>
-      <option value="https://server19.mp3quran.net/mensh/">محمد صديق المنشاوي</option>
-      <option value="https://server20.mp3quran.net/abdullah/">عبد الله عواد الجهني</option>
-      <option value="https://server21.mp3quran.net/saud/">سعود الفايز</option>
-      <option value="https://server22.mp3quran.net/ghamdi/">أحمد الغامدي</option>
-      <option value="https://server23.mp3quran.net/khalid/">خالد الجليل</option>
-      <option value="https://server24.mp3quran.net/tblgh/">صلاح البدير</option>
-      <option value="https://server25.mp3quran.net/mhmd/">محمد أيوب</option>
-      <option value="https://server26.mp3quran.net/hudhaify/">علي الحذيفي</option>
-      <option value="https://server27.mp3quran.net/shatri/">أبو بكر الشاطري</option>
-    </select>
-
-    <label>اختر السورة:</label>
-    <select id="surah"></select>
-
-    <button onclick="playSurah()">▶️ استماع</button>
-    <button onclick="downloadSurah()">⬇️ تحميل</button>
-    <br>
-    <audio id="player" controls></audio>
+<!-- قسم التلاوة -->
+<section id="recitation">
+  <h2>🎧 استمع للقرآن الكريم (الشيخ سعد الغامدي)</h2>
+  <div class="player-box">
+    <div class="controls">
+      <label>اختر السورة:</label>
+      <select id="surah"></select>
+      <button onclick="playSurah()">▶️ استماع</button>
+      <audio id="player" controls></audio>
+      <a id="downloadLink" class="download" href="#" download>⬇️ تحميل السورة</a>
+    </div>
+    <div class="surah-list" id="surahList"></div>
   </div>
 </section>
 
 <!-- المصحف -->
 <section id="mushaf">
   <h2>📚 المصحف المكتوب (جميع السور)</h2>
-  <ul id="mushafList"></ul>
+  <div class="grid" id="mushafGrid"></div>
+  <div id="popup" class="popup"></div>
 </section>
 
 <!-- الأحاديث -->
 <section id="hadith">
   <h2>📜 أحاديث نبوية</h2>
-  <p>قال رسول الله ﷺ: "إنما الأعمال بالنيات وإنما لكل امرئ ما نوى".</p>
   <p>قال رسول الله ﷺ: "خيركم من تعلم القرآن وعلمه".</p>
-  <p>قال رسول الله ﷺ: "الدين النصيحة".</p>
+  <p>قال رسول الله ﷺ: "من قرأ حرفًا من كتاب الله فله به حسنة".</p>
 </section>
 
 <!-- الأدعية -->
@@ -108,7 +148,6 @@
   <h2>🤲 الأدعية</h2>
   <p>🌙 اللهم إنك عفو تحب العفو فاعف عنا.</p>
   <p>☀️ اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت.</p>
-  <p>🤲 ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.</p>
 </section>
 
 <!-- الدعم -->
@@ -130,7 +169,6 @@
 </footer>
 
 <script>
-  // السور 114
   const surahs = [
     "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
     "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
@@ -146,38 +184,46 @@
     "المسد","الإخلاص","الفلق","الناس"
   ];
 
-  // ملء قائمة السور
+  // ملء قائمة السور للتلاوة
   const surahSelect = document.getElementById("surah");
+  const surahList = document.getElementById("surahList");
   surahs.forEach((name,i)=>{
     let opt = document.createElement("option");
     opt.value = String(i+1).padStart(3,"0")+".mp3";
     opt.textContent = name;
     surahSelect.appendChild(opt);
+
+    let btn = document.createElement("button");
+    btn.textContent = name;
+    btn.onclick=()=>{
+      surahSelect.value = opt.value;
+      playSurah();
+    }
+    surahList.appendChild(btn);
   });
 
-  // ملء قائمة المصحف المكتوب
-  const mushafList = document.getElementById("mushafList");
-  surahs.forEach((name,i)=>{
-    let li = document.createElement("li");
-    li.innerHTML = `<a href="https://surahquran.com/quran-html/${i+1}.html" target="_blank">${name}</a>`;
-    mushafList.appendChild(li);
-  });
-
-  // تشغيل السورة
   function playSurah(){
-    const reciter = document.getElementById("reciter").value;
-    const surah = document.getElementById("surah").value;
-    let player = document.getElementById("player");
-    player.src = reciter+surah;
+    const base = "https://server7.mp3quran.net/s_gmd/";
+    const surah = surahSelect.value;
+    const player = document.getElementById("player");
+    const link = document.getElementById("downloadLink");
+    player.src = base+surah;
     player.play();
+    link.href = base+surah;
   }
 
-  // تحميل السورة
-  function downloadSurah(){
-    const reciter = document.getElementById("reciter").value;
-    const surah = document.getElementById("surah").value;
-    window.open(reciter+surah, "_blank");
-  }
+  // المصحف المكتوب
+  const mushafGrid = document.getElementById("mushafGrid");
+  const popup = document.getElementById("popup");
+  surahs.forEach((name,i)=>{
+    let btn = document.createElement("button");
+    btn.textContent=name;
+    btn.onclick=()=>{
+      popup.innerHTML=`<h3>${name}</h3><iframe src="https://surahquran.com/quran-html/${i+1}.html" width="100%" height="350"></iframe>`;
+      popup.style.display="block";
+    }
+    mushafGrid.appendChild(btn);
+  });
 </script>
 
 </body>
