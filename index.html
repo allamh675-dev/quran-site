@@ -4,44 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📖 NoorQuranOnline | القرآن الكريم كامل</title>
-
-  <meta name="description" content="القرآن الكريم كامل بصوت السديسي والغامدي + مصحف مكتوب + أحاديث + أدعية">
-  <meta name="keywords" content="القرآن الكريم, السديسي, الغامدي, تلاوة, مصحف, أحاديث, أدعية, NoorQuranOnline">
-  <meta name="author" content="NoorQuranOnline">
-  <meta name="language" content="ar">
-
   <style>
     body {
       font-family: Tahoma, sans-serif;
-      margin:0; padding:0;
-      background:url('https://iili.io/K91WZj1.jpg') no-repeat center center fixed;
-      background-size:cover; color:#fff;
+      margin: 0; padding: 0;
+      background: url('https://iili.io/K91WZj1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
     }
-    header {background:rgba(0,0,0,0.7); padding:20px; text-align:center;}
-    nav {display:flex; justify-content:center; gap:10px; flex-wrap:wrap; background:rgba(0,0,0,0.5);}
+    header {background: rgba(0,0,0,0.8); padding: 20px; text-align: center;}
+    nav {display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; background: rgba(0,0,0,0.7);}
     nav a {color:#fff; text-decoration:none; padding:10px 15px; border-radius:6px; background:rgba(255,255,255,0.1);}
-    nav a:hover {background:rgba(0,0,0,0.8);}
+    nav a:hover {background:rgba(0,0,0,0.9);}
     section {margin:20px; padding:20px; background:rgba(0,0,0,0.6); border-radius:10px;}
     h2 {text-align:center;}
-    footer {background:rgba(0,0,0,0.8); padding:15px; text-align:center; margin-top:20px;}
+    footer {background:rgba(0,0,0,0.9); padding:15px; text-align:center; margin-top:20px;}
 
-    /* مشغل التلاوات */
-    .controls {text-align:center; margin-bottom:20px;}
-    select, input {padding:8px; margin:5px; border-radius:6px; border:none;}
-    .surah-list {display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:10px; margin-top:20px;}
-    .surah-item {
-      background:rgba(255,255,255,0.1); padding:10px; border-radius:8px; text-align:center;
+    select, button {
+      padding: 8px; margin: 5px; border-radius: 6px; border:none; font-size:14px;
     }
-    .surah-item img {width:40px; display:block; margin:0 auto 10px;}
-    .surah-item button, .surah-item a {
-      display:inline-block; margin:5px; padding:6px 12px;
-      border:none; border-radius:6px; cursor:pointer;
-      text-decoration:none; color:#fff;
-    }
-    .play-btn {background:#28a745;}
-    .download-btn {background:#007bff;}
-    .play-btn:hover {background:#218838;}
-    .download-btn:hover {background:#0056b3;}
+    button {cursor:pointer; background:#007bff; color:#fff;}
+    button:hover {background:#0056b3;}
+    .audio-player {text-align:center;}
   </style>
 </head>
 <body>
@@ -70,18 +54,39 @@
 <!-- مشغل التلاوات -->
 <section id="apl">
   <h2>🎧 استمع للقرآن الكريم</h2>
-  <div class="controls">
-    <label>اختر الشيخ:</label>
+  <div class="audio-player">
+    <label>اختر القارئ:</label>
     <select id="reciter">
-      <option value="sds">عبدالرحمن السديسي</option>
-      <option value="s_gmd">سعد الغامدي</option>
+      <option value="https://server8.mp3quran.net/basit/">عبد الباسط عبد الصمد</option>
+      <option value="https://server12.mp3quran.net/husr/">محمود خليل الحصري</option>
+      <option value="https://server6.mp3quran.net/afs/">مشاري العفاسي</option>
+      <option value="https://server11.mp3quran.net/maher/">ماهر المعيقلي</option>
+      <option value="https://server7.mp3quran.net/s_gmd/">سعد الغامدي</option>
+      <option value="https://server10.mp3quran.net/qtm/">عبد الرحمن السديس</option>
+      <option value="https://server14.mp3quran.net/jbr/">محمد جبريل</option>
+      <option value="https://server15.mp3quran.net/shuraim/">سعود الشريم</option>
+      <option value="https://server16.mp3quran.net/mtrod/">عبد الله المطرود</option>
+      <option value="https://server17.mp3quran.net/ayman/">أيمن سويد</option>
+      <option value="https://server18.mp3quran.net/farsi/">إبراهيم الأخضر</option>
+      <option value="https://server19.mp3quran.net/mensh/">محمد صديق المنشاوي</option>
+      <option value="https://server20.mp3quran.net/abdullah/">عبد الله عواد الجهني</option>
+      <option value="https://server21.mp3quran.net/saud/">سعود الفايز</option>
+      <option value="https://server22.mp3quran.net/ghamdi/">أحمد الغامدي</option>
+      <option value="https://server23.mp3quran.net/khalid/">خالد الجليل</option>
+      <option value="https://server24.mp3quran.net/tblgh/">صلاح البدير</option>
+      <option value="https://server25.mp3quran.net/mhmd/">محمد أيوب</option>
+      <option value="https://server26.mp3quran.net/hudhaify/">علي الحذيفي</option>
+      <option value="https://server27.mp3quran.net/shatri/">أبو بكر الشاطري</option>
     </select>
+
+    <label>اختر السورة:</label>
+    <select id="surah"></select>
+
+    <button onclick="playSurah()">▶️ استماع</button>
+    <button onclick="downloadSurah()">⬇️ تحميل</button>
     <br>
-    <label>🔍 ابحث عن سورة:</label>
-    <input type="text" id="search" placeholder="اكتب اسم السورة...">
+    <audio id="player" controls></audio>
   </div>
-  <div class="surah-list" id="surahList"></div>
-  <audio id="player" controls style="width:100%; margin-top:20px;"></audio>
 </section>
 
 <!-- المصحف -->
@@ -125,13 +130,7 @@
 </footer>
 
 <script>
-  // روابط الشيوخ
-  const reciters = {
-    sds: "https://server10.mp3quran.net/sds/",   // ✅ رابط السديسي الصحيح
-    s_gmd: "https://server7.mp3quran.net/s_gmd/" // الغامدي
-  };
-
-  // أسماء السور
+  // السور 114
   const surahs = [
     "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
     "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
@@ -147,45 +146,38 @@
     "المسد","الإخلاص","الفلق","الناس"
   ];
 
-  const surahList = document.getElementById("surahList");
-  const reciterSelect = document.getElementById("reciter");
-  const player = document.getElementById("player");
-  const search = document.getElementById("search");
+  // ملء قائمة السور
+  const surahSelect = document.getElementById("surah");
+  surahs.forEach((name,i)=>{
+    let opt = document.createElement("option");
+    opt.value = String(i+1).padStart(3,"0")+".mp3";
+    opt.textContent = name;
+    surahSelect.appendChild(opt);
+  });
+
+  // ملء قائمة المصحف المكتوب
   const mushafList = document.getElementById("mushafList");
-
-  // بناء قائمة السور
-  function renderSurahs(filter=""){
-    surahList.innerHTML = "";
-    surahs.forEach((name,i)=>{
-      if(filter && !name.includes(filter)) return;
-      let div = document.createElement("div");
-      div.className = "surah-item";
-      div.innerHTML = `
-        <img src="https://iili.io/K91WZj1.jpg" alt="surah">
-        <h4>${name}</h4>
-        <button class="play-btn" onclick="playSurah(${i+1})">▶️ تشغيل</button>
-        <a class="download-btn" href="${reciters[reciterSelect.value]}${String(i+1).padStart(3,'0')}.mp3" download>⬇️ تحميل</a>
-      `;
-      surahList.appendChild(div);
-    });
-  }
-  renderSurahs();
-
-  // تشغيل السورة
-  function playSurah(i){
-    player.src = reciters[reciterSelect.value] + String(i).padStart(3,"0") + ".mp3";
-    player.play();
-  }
-
-  // البحث
-  search.addEventListener("input", e => renderSurahs(e.target.value));
-
-  // بناء المصحف المكتوب
   surahs.forEach((name,i)=>{
     let li = document.createElement("li");
     li.innerHTML = `<a href="https://surahquran.com/quran-html/${i+1}.html" target="_blank">${name}</a>`;
     mushafList.appendChild(li);
   });
+
+  // تشغيل السورة
+  function playSurah(){
+    const reciter = document.getElementById("reciter").value;
+    const surah = document.getElementById("surah").value;
+    let player = document.getElementById("player");
+    player.src = reciter+surah;
+    player.play();
+  }
+
+  // تحميل السورة
+  function downloadSurah(){
+    const reciter = document.getElementById("reciter").value;
+    const surah = document.getElementById("surah").value;
+    window.open(reciter+surah, "_blank");
+  }
 </script>
 
 </body>
