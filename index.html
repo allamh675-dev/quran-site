@@ -1,301 +1,197 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📖 NoorQuranOnline | القرآن الكريم كامل</title>
 
-  <meta name="description" content="القرآن الكريم كامل بصوت الشيخ سعد الغامدي + مصحف مكتوب + أحاديث + أدعية + دعم وتواصل">
-  <meta name="keywords" content="القرآن الكريم, سعد الغامدي, تلاوة, مصحف, أدعية, أحاديث">
-  <meta name="author" content="NoorQuranOnline">
-  <meta name="language" content="ar">
-
   <style>
-    :root{
-      --bg:#000000;
-      --overlay:rgba(0,0,0,.6);
-      --green:#065f46;
-      --nav:#0d3b66;
-      --chip:#124559;
-      --btn:#1e6091;
-      --btnH:#144552;
-      --white:#fff;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      font-family: Tahoma, Arial, sans-serif;
-      margin:0; color:var(--white);
-      background:url('https://iili.io/K91WZj1.jpg') no-repeat center/cover fixed;
+    body {
+      font-family: Tahoma, sans-serif;
+      margin:0; padding:0;
+      background:url('https://iili.io/K91WZj1.jpg') no-repeat center center fixed;
+      background-size:cover; color:#fff;
+      line-height:1.9;
     }
 
-    /* Header */
-    header{background:var(--green); padding:20px; text-align:center}
-    header h1{margin:0; font-size:26px}
-    header p{margin:6px 0 0; opacity:.95}
-
-    /* Nav */
-    nav{
-      position:sticky; top:0; z-index:50;
-      display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
-      padding:10px; background:var(--nav);
-      box-shadow:0 2px 6px rgba(0,0,0,.15);
+    header {
+      background:#065f46;
+      padding:20px; text-align:center;
     }
-    nav a{
-      color:var(--white); text-decoration:none;
-      padding:8px 14px; border-radius:8px; background:var(--chip);
-      transition:.2s;
+    header h1 {margin:0; font-size:26px;}
+    header p {margin:5px 0 0;}
+
+    nav {
+      display:flex; justify-content:center; flex-wrap:wrap;
+      background:#0d3b66; padding:10px;
     }
-    nav a:hover{background:var(--btnH)}
-
-    /* Sections */
-    section{
-      margin:20px; padding:20px; border-radius:14px; background:var(--overlay);
-      backdrop-filter:saturate(120%) blur(1px);
+    nav a {
+      color:#fff; text-decoration:none;
+      margin:5px 10px; padding:8px 14px;
+      border-radius:6px; background:#124559;
     }
-    h2{text-align:center; margin:0 0 16px}
+    nav a:hover {background:#062c43;}
 
-    /* Player */
-    .player-box{display:flex; flex-wrap:wrap; gap:20px; justify-content:center; align-items:flex-start}
-    .controls{flex:1 1 320px; background:var(--chip); padding:16px; border-radius:12px}
-    .controls label{display:block; margin-bottom:6px}
-    .row{display:flex; gap:8px; align-items:center; margin-bottom:10px}
-    select,button,input{
-      width:100%; padding:10px; border:0; border-radius:10px;
-      background:var(--btn); color:#fff; outline:none;
+    section {
+      margin:20px; padding:20px;
+      background:rgba(0,0,0,0.7);
+      border-radius:10px;
     }
-    button{cursor:pointer}
-    button:hover{background:var(--btnH)}
-    audio{width:100%; margin-top:10px}
-    .download{display:block; margin-top:10px; text-align:center; text-decoration:none; color:#fff}
+    h2 {text-align:center; margin-bottom:15px;}
 
-    .surah-panel{flex:1 1 280px; background:#062c43; padding:12px; border-radius:12px; max-height:340px; overflow:auto}
-    .search{margin-bottom:8px; background:#0e466b}
-
-    .surah-list button{display:block; width:100%; margin:4px 0; padding:8px; background:var(--btn); border-radius:10px}
-
-    /* Mushaf */
-    .tools{display:flex; gap:10px; margin-bottom:12px}
-    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(92px,1fr)); gap:8px}
-    .grid button{padding:8px; border:0; border-radius:10px; background:var(--btn); color:#fff}
-    .grid button:hover{background:var(--btnH)}
-    .popup{
-      display:none; position:relative; margin-top:14px; background:#000; border-radius:12px; padding:18px; max-height:420px; overflow:auto
+    /* المصحف */
+    .surah {
+      margin-bottom:40px;
+      padding:15px;
+      background:#fff;
+      color:#000;
+      border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.2);
     }
-    .close{
-      position:absolute; top:8px; inset-inline-end:8px; border:0; border-radius:8px;
-      background:#333; color:#fff; padding:6px 10px; cursor:pointer
+    .surah h3 {
+      background:#065f46;
+      color:#fff;
+      padding:8px;
+      border-radius:6px;
+      margin-top:0;
     }
-    .muted{opacity:.75}
+    .ayah {
+      display:block;
+      margin:5px 0;
+      font-size:18px;
+    }
 
-    footer{background:#000; text-align:center; padding:16px; margin-top:26px}
+    footer {
+      background:#000; text-align:center;
+      padding:15px; margin-top:20px;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>📖 NoorQuranOnline</h1>
-    <p>القرآن الكريم كامل – تلاوة سعد الغامدي + مصحف مكتوب + أحاديث + أدعية</p>
-  </header>
+<header>
+  <h1>📖 NoorQuranOnline</h1>
+  <p>القرآن الكريم كامل – تلاوة سعد الغامدي + مصحف مكتوب + أحاديث + أدعية</p>
+</header>
 
-  <nav>
-    <a href="#recitation">🎧 التلاوة</a>
-    <a href="#mushaf">📚 المصحف المكتوب</a>
-    <a href="#hadith">📜 الأحاديث</a>
-    <a href="#dua">🤲 الأدعية</a>
-    <a href="#support">💚 الدعم</a>
-    <a href="#contact">📩 تواصل</a>
-  </nav>
+<nav>
+  <a href="#recitation">🎧 التلاوة</a>
+  <a href="#mushaf">📚 المصحف المكتوب</a>
+  <a href="#hadith">📜 الأحاديث</a>
+  <a href="#dua">🤲 الأدعية</a>
+  <a href="#support">💚 الدعم</a>
+  <a href="#contact">📩 تواصل</a>
+</nav>
 
-  <!-- التلاوة -->
-  <section id="recitation">
-    <h2>🎧 استمع للقرآن (الشيخ سعد الغامدي)</h2>
+<!-- قسم التلاوة -->
+<section id="recitation">
+  <h2>🎧 استمع للقرآن الكريم (الشيخ سعد الغامدي)</h2>
+  <label>اختر السورة:</label>
+  <select id="surah"></select>
+  <button onclick="playSurah()">▶️ استماع</button>
+  <audio id="player" controls></audio>
+  <a id="downloadLink" href="#" download style="display:block; margin-top:10px; color:#fff;">⬇️ تحميل السورة</a>
+</section>
 
-    <div class="player-box">
-      <div class="controls">
-        <div class="row">
-          <label for="surah" style="width:auto">اختر السورة:</label>
-          <select id="surah" aria-label="اختيار السورة"></select>
-        </div>
+<!-- المصحف المكتوب -->
+<section id="mushaf">
+  <h2>📚 المصحف المكتوب (النص الكامل للقرآن)</h2>
+  <div id="quran"></div>
+</section>
 
-        <button id="playBtn">▶️ استماع</button>
-        <audio id="player" controls preload="none"></audio>
-        <a id="downloadLink" class="download" href="#" download="">⬇️ تحميل السورة</a>
-        <p class="muted" style="margin-top:8px">💡 إن لم يبدأ الصوت مباشرة اضغط زر التشغيل في المشغّل.</p>
-      </div>
+<!-- الأحاديث -->
+<section id="hadith">
+  <h2>📜 أحاديث نبوية</h2>
+  <p>قال رسول الله ﷺ: "خيركم من تعلم القرآن وعلمه".</p>
+  <p>قال رسول الله ﷺ: "من قرأ حرفًا من كتاب الله فله به حسنة".</p>
+</section>
 
-      <div class="surah-panel">
-        <input id="searchPlay" class="search" type="search" placeholder="🔎 ابحث في السور…">
-        <div class="surah-list" id="surahList"></div>
-      </div>
-    </div>
-  </section>
+<!-- الأدعية -->
+<section id="dua">
+  <h2>🤲 الأدعية</h2>
+  <p>🌙 اللهم إنك عفو تحب العفو فاعف عنا.</p>
+  <p>☀️ اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت.</p>
+</section>
 
-  <!-- المصحف المكتوب -->
-  <section id="mushaf">
-    <h2>📚 المصحف المكتوب (جميع السور)</h2>
+<!-- الدعم -->
+<section id="support">
+  <h2>💚 ادعمنا</h2>
+  <p>ساهم معنا في نشر الخير:</p>
+  <a href="https://paypal.me/Hazemkhalef" target="_blank">💳 التبرع عبر PayPal</a>
+  <p>📱 فودافون كاش: 01005546329</p>
+</section>
 
-    <div class="tools">
-      <input id="searchMushaf" class="search" type="search" placeholder="🔎 ابحث في السور…">
-      <button id="clearPopup" style="flex:0 0 140px">مسح العرض</button>
-    </div>
+<!-- تواصل -->
+<section id="contact">
+  <h2>📩 تواصل معنا</h2>
+  <p>📧 البريد: hazemallam506070@gmail.com</p>
+</section>
 
-    <div class="grid" id="mushafGrid"></div>
+<footer>
+  <p>جميع الحقوق محفوظة © NoorQuranOnline 2025</p>
+</footer>
 
-    <div id="popup" class="popup" role="region" aria-live="polite">
-      <button class="close" id="closePopup">إغلاق ✖</button>
-      <div id="popupInner"></div>
-    </div>
+<script>
+  // أسماء السور
+  const surahs = [
+    "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
+    "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
+    "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
+    "لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر",
+    "فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق",
+    "الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
+    "الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج",
+    "نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس",
+    "التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
+    "الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات",
+    "القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر",
+    "المسد","الإخلاص","الفلق","الناس"
+  ];
 
-    <p id="mushafHint" class="muted">↖️ اختر السورة لعرض النص هنا مباشرة.</p>
-  </section>
+  // ملء قائمة السور للتلاوة
+  const surahSelect = document.getElementById("surah");
+  surahs.forEach((name,i)=>{
+    let opt = document.createElement("option");
+    opt.value = String(i+1).padStart(3,"0")+".mp3";
+    opt.textContent = name;
+    surahSelect.appendChild(opt);
+  });
 
-  <!-- الأحاديث -->
-  <section id="hadith">
-    <h2>📜 أحاديث نبوية</h2>
-    <p>قال رسول الله ﷺ: «خيركم من تعلّم القرآن وعلّمه».</p>
-    <p>وقال ﷺ: «من قرأ حرفًا من كتاب الله فله به حسنة».</p>
-  </section>
+  function playSurah(){
+    const base = "https://server7.mp3quran.net/s_gmd/";
+    const surah = surahSelect.value;
+    const player = document.getElementById("player");
+    const link = document.getElementById("downloadLink");
+    player.src = base+surah;
+    player.play();
+    link.href = base+surah;
+  }
 
-  <!-- الأدعية -->
-  <section id="dua">
-    <h2>🤲 الأدعية</h2>
-    <p>🌙 اللهم إنك عفو تحب العفو فاعفُ عنّا.</p>
-    <p>☀️ اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت.</p>
-  </section>
+  // تحميل القرآن كاملاً JSON
+  fetch("https://cdn.jsdelivr.net/npm/quran-json@3.1.2/dist/quran.json")
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById("quran");
 
-  <!-- الدعم -->
-  <section id="support">
-    <h2>💚 ادعمنا</h2>
-    <p>ساهم معنا في نشر الخير:</p>
-    <a href="https://paypal.me/Hazemkhalef" target="_blank" rel="noopener">💳 التبرع عبر PayPal</a>
-    <p>📱 فودافون كاش: 01005546329</p>
-  </section>
+      data.chapters.forEach(surah => {
+        let surahDiv = document.createElement("div");
+        surahDiv.className = "surah";
 
-  <!-- تواصل -->
-  <section id="contact">
-    <h2>📩 تواصل معنا</h2>
-    <p>📧 hazemallam506070@gmail.com</p>
-  </section>
+        let title = document.createElement("h3");
+        title.textContent = `سورة ${surah.name}`;
+        surahDiv.appendChild(title);
 
-  <footer>جميع الحقوق محفوظة © NoorQuranOnline 2025</footer>
-
-  <script>
-    /* ===== بيانات السور ===== */
-    const surahNames = [
-      "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة",
-      "يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
-      "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
-      "لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر",
-      "فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق",
-      "الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
-      "الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج",
-      "نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس",
-      "التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
-      "الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات",
-      "القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر",
-      "المسد","الإخلاص","الفلق","الناس"
-    ];
-
-    /* ======= التلاوة (سعد الغامدي) ======= */
-    const baseAudio = "https://server7.mp3quran.net/s_gmd/";
-    const sel = id => document.getElementById(id);
-    const surahSelect = sel("surah");
-    const surahList = sel("surahList");
-    const player = sel("player");
-    const playBtn = sel("playBtn");
-    const downloadLink = sel("downloadLink");
-
-    // تعبئة القوائم
-    surahNames.forEach((name, i) => {
-      const file = String(i+1).padStart(3,"0") + ".mp3";
-
-      const opt = document.createElement("option");
-      opt.value = file; opt.textContent = name;
-      surahSelect.appendChild(opt);
-
-      const btn = document.createElement("button");
-      btn.textContent = name;
-      btn.addEventListener("click", () => { surahSelect.value = file; playSurah(); });
-      surahList.appendChild(btn);
-    });
-
-    function playSurah(){
-      const file = surahSelect.value;
-      const url = baseAudio + file;
-      player.src = url;
-      downloadLink.href = url;
-      downloadLink.download = `سعد-الغامدي-${file}`;
-      // محاولة تشغيل.. وقد يطلب المتصفح تفاعل المستخدم
-      const p = player.play();
-      if(p && typeof p.catch === "function"){ p.catch(()=>{}); }
-    }
-    playBtn.addEventListener("click", playSurah);
-
-    // بحث في قائمة التلاوة
-    sel("searchPlay").addEventListener("input", (e)=>{
-      const q = e.target.value.trim();
-      [...surahList.children].forEach(b=>{
-        b.style.display = b.textContent.includes(q) ? "" : "none";
-      });
-    });
-
-    /* ======= المصحف المكتوب من quran.json ======= */
-    const mushafGrid = sel("mushafGrid");
-    const popup = sel("popup");
-    const popupInner = sel("popupInner");
-    const closePopup = sel("closePopup");
-    const clearPopup = sel("clearPopup");
-
-    let quranData = null;
-
-    function renderMushafButtons(){
-      mushafGrid.innerHTML = "";
-      Object.keys(quranData).forEach(num=>{
-        const b = document.createElement("button");
-        b.textContent = quranData[num].name;
-        b.addEventListener("click", ()=>{
-          popupInner.innerHTML = `<h3>سورة ${quranData[num].name}</h3><p>${quranData[num].text}</p>`;
-          popup.style.display = "block";
+        surah.verses.forEach(ayah => {
+          let ayahSpan = document.createElement("span");
+          ayahSpan.className = "ayah";
+          ayahSpan.textContent = `${ayah.text} ﴿${ayah.id}﴾`;
+          surahDiv.appendChild(ayahSpan);
         });
-        mushafGrid.appendChild(b);
-      });
-    }
 
-    function showErrorBox(msg){
-      popupInner.innerHTML = `<h3 style="margin-top:0">تعذّر تحميل المصحف</h3><p>${msg}</p><p class="muted">تأكّد أن ملف <b>quran.json</b> موجود بجانب <b>index.html</b> في نفس المجلد.</p>`;
-      popup.style.display = "block";
-    }
-
-    // تحميل quran.json
-    fetch("quran.json")
-      .then(r=>{
-        if(!r.ok) throw new Error("HTTP "+r.status);
-        return r.json();
-      })
-      .then(json=>{
-        quranData = json;
-        renderMushafButtons();
-      })
-      .catch(()=>{
-        showErrorBox("لم أتمكّن من العثور على الملف quran.json (خطأ 404).");
-      });
-
-    // بحث المصحف
-    sel("searchMushaf").addEventListener("input",(e)=>{
-      const term = e.target.value.trim();
-      if(!quranData) return;
-      [...mushafGrid.children].forEach(b=>{
-        b.style.display = b.textContent.includes(term) ? "" : "none";
+        container.appendChild(surahDiv);
       });
     });
+</script>
 
-    // أدوات النافذة
-    closePopup.addEventListener("click", ()=> popup.style.display = "none");
-    clearPopup.addEventListener("click", ()=>{
-      popup.style.display = "none";
-      popupInner.innerHTML = "";
-    });
-  </script>
 </body>
 </html>
